@@ -1,145 +1,123 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Header from '../Components/Header';
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
-import format from 'date-fns/format';
-import parse from 'date-fns/parse';
-import startOfWeek from 'date-fns/startOfWeek';
-import getDay from 'date-fns/getDay';
+import { format, parse, startOfWeek, getDay } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR'; 
-import { addMonths } from 'date-fns/addMonths';
-import { subMonths } from 'date-fns/subMonths';
+import { addMonths, subMonths } from 'date-fns';
+import { motion } from 'framer-motion';
+import { FiChevronLeft, FiChevronRight, FiPlus, FiGrid, FiList } from 'react-icons/fi';
 import { CalendarStyles } from '../styles/CalendarStyles';
 import EventList from '../Components/EventList';
 import AddEventModal from '../Components/AddEventModal';
 
-
-const locales = {
-  'pt-BR': ptBR,
-};
-
+const locales = { 'pt-BR': ptBR };
 const localizer = dateFnsLocalizer({
-  format,
-  parse,
+  format, parse,
   startOfWeek: () => startOfWeek(new Date(), { locale: ptBR }),
-  getDay,
-  locales,
+  getDay, locales,
 });
 
-const eventsData = [
-  {
-    title: 'Reunião do Time A',
-    start: new Date(2025, 11, 6, 10, 0, 0),
-    end: new Date(2025, 11, 6, 12, 0, 0),
-    allDay: false,
-    color: '#818cf8',
-  },
-  {
-    title: 'Férias de João',
-    start: new Date(2025, 11, 24),
-    end: new Date(2025, 11, 26),
-    allDay: true,
-    color: '#34d399',
-  },
-];
-
-
 const EventsPage = ({ onSearchClick }) => {
-
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  const [currentDate, setCurrentDate] = useState(new Date(2025,11,1));
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [currentView, setCurrentView] = useState('month');
 
-  const [currentView, setCurrentView] = useState('month')
-
-  const goToNextMonth = () => {
-    setCurrentDate(prevDate => addMonths(prevDate, 1));
-  };
-  
-  const goToPrevMonth = () => {
-    setCurrentDate(prevDate => subMonths(prevDate, 1));
-  };
-
-  const monthName = format(currentDate, 'LLLL yyyy', { locale: ptBR });
-
-  const goToToday = () => {
-    setCurrentDate(new Date());
-    setCurrentView('day');
-  };
+  const monthName = format(currentDate, 'MMMM yyyy', { locale: ptBR });
 
   const views = [
-    { key: 'month', label: 'Mês' },
-    { key: 'week', label: 'Semana' },
-    { key: 'day', label: 'Dia' },
-    { key: 'agenda', label: 'Lista' },
+    { id: 'month', label: 'Mês', icon: FiGrid },
+    { id: 'agenda', label: 'Agenda', icon: FiList },
   ];
 
   return (
-    <main className="w-full p-8">
+    <main className="w-full p-8 border border-main-border rounded-2xl shadow-2xl my-4">
       <CalendarStyles />
-      <Header title="Calendário" onSearchClick={onSearchClick}/> 
+      <Header title="Calendário Operacional" onSearchClick={onSearchClick}/> 
       
-      <div className="mt-8 grid grid-cols-1 lg:grid-cols-4 gap-6"> 
+      <div className="mt-8 grid grid-cols-1 lg:grid-cols-4 gap-8"> 
 
-        <div className="lg:col-span-3  bg-linear-to-t from-[#06062285] to-[#0606228a] p-6 rounded-lg shadow-xl h-[80vh]">
-          
-          <div className="flex justify-between items-center mb-4">
-            <div className='flex items-center space-x-4'>
-              <h2 className="text-xl font-semibold text-white capitalize">{monthName}</h2>
-                  <button onClick={() => setIsModalOpen(true)} className="px-4 py-2 bg-[#042b80] cursor-pointer text-white font-semibold rounded-lg hover:bg-[#03153a] transition">
-                    +
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="lg:col-span-3 bg-card-primary border border-main-border p-8 rounded-[2.5rem] shadow-2xl h-[82vh] flex flex-col"
+        >
+          <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+            <div className='flex items-center space-x-6'>
+              <h2 className="text-2xl font-bold text-primary-text capitalize tracking-tighter ">
+                {monthName}
+              </h2>
+              <div className='flex bg-main-bg p-1 border border-main-border rounded-2xl'>
+                <button onClick={() => setCurrentDate(subMonths(currentDate, 1))} className='p-2 hover:text-accent transition-colors cursor-pointer'><FiChevronLeft size={20}/></button>
+                <button onClick={() => setCurrentDate(addMonths(currentDate, 1))} className='p-2 hover:text-accent transition-colors cursor-pointer'><FiChevronRight size={20}/></button>
+              </div>
+            </div>
+
+            <div className='flex items-center space-x-3'>
+              <div className='flex bg-main-bg border border-main-border rounded-2xl p-1'>
+                {views.map(v => (
+                  <button 
+                    key={v.id}
+                    onClick={() => setCurrentView(v.id)}
+                    className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-widest transition-all flex items-center gap-2 cursor-pointer
+                      ${currentView === v.id ? 'bg-accent text-white shadow-lg shadow-accent/20' : 'text-secondary-text hover:text-primary-text'}
+                    `}
+                  >
+                    <v.icon /> {v.label}
                   </button>
+                ))}
               </div>
 
-              <AddEventModal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-              />
-              <div className='flex items-center space-x-2'>
-                  <div className='flex space-x-2'>
-                      <button onClick={goToPrevMonth} className='p-2 rounded-full bg-[#060c18] hover:bg-[#042b80] text-white cursor-pointer'>«</button>
-                      <button onClick={goToNextMonth} className='p-2 rounded-full bg-[#060c18] hover:bg-[#042b80] text-white cursor-pointer'>»</button>
-                  </div>
-              </div>
+              <button 
+                onClick={() => setIsModalOpen(true)} 
+                className="flex items-center gap-2 px-6 py-3 bg-accent text-white font-bold rounded-2xl hover:bg-accent/80 transition-all shadow-lg shadow-accent/20 cursor-pointer active:scale-95"
+              >
+                <FiPlus strokeWidth={3}/> <span>Novo Evento</span>
+              </button>
+            </div>
           </div>
 
-          <div className="h-[90%]">
+          <div className="flex-1 overflow-hidden">
             <Calendar
               localizer={localizer}
-              events={eventsData}
+              // É aqui que os eventos da agenda vão ser armazenados
+              events={[
+                {
+                id: 1,
+                title: 'Reunião de Alinhamento',
+                start: new Date(2026, 3, 15, 10, 0), // Ano, Mês(0-11), Dia, Hora, Min
+                end: new Date(2026, 3, 15, 12, 0),
+                color: '#6366f1',
+                category: 'Gestão'
+              }
+              ]}
               startAccessor="start"
               endAccessor="end"
               date={currentDate}
               view={currentView}
+              toolbar={false}
               onView={(view) => setCurrentView(view)}
-              onNavigate={(newDate) => {setCurrentDate(newDate)}}
+              onNavigate={(date) => setCurrentDate(date)}
               culture='pt-BR'
-              messages={{
-                month: 'Mês',
-                week: 'Semana',
-                day: 'Dia',
-                today: 'Hoje',
-                previous: 'Ant',
-                next: 'Prox',
-                allDay: 'Dia Todo',
-              }}
               eventPropGetter={(event) => ({
-                style: {
-                  backgroundColor: event.color,
-                  borderRadius: '5px',
-                  opacity: 0.9,
-                  color: 'white',
-                },
+                className: "custom-event-node",
+                style: { backgroundColor: event.color || 'var(--color-accent)' }
               })}
             />
           </div>
-        </div>
+        </motion.div>
 
-        <div className="lg:col-span-1 bg-linear-to-t from-[#06062285] to-[#0606228a] p-6 rounded-lg shadow-xl">
+        <motion.div 
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.2 }}
+          className="lg:col-span-1"
+        >
           <EventList />
-        </div>
+        </motion.div>
         
       </div>
+
+      <AddEventModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </main>
   );
 };

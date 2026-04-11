@@ -8,7 +8,7 @@ const ProjectDeadlineWidget = ({ projectName, percentage, className }) => {
             <div className="flex flex-col justify-center h-full">
                 <div className="flex justify-between items-end mb-2">
                     <span className="text-xs text-gray-400 uppercase font-medium">Status do Sprint</span>
-                    <span className="text-xl font-bold text-white">{percentage}%</span>
+                    <span className="text-xl font-bold text-primary-text">{percentage}%</span>
                 </div>
 
                 <div className="w-full h-3 bg-white/5 rounded-full overflow-hidden border border-white/5 p-0.5">

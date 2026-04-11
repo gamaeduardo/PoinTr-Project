@@ -33,7 +33,7 @@ const Header = ({ title, onSearchClick }) => {
     return (
         <header className="flex justify-between items-center w-full pb-3">
             <div className="flex gap-3">
-                <h1 className="text-xl font-normal items-center text-slate-500 flex gap-2 cursor-pointer">
+                <h1 className="text-xl font-normal items-center text-accent flex gap-2 cursor-pointer">
                     <FiHome size={18} />
                     {title}
                 </h1>
@@ -45,7 +45,7 @@ const Header = ({ title, onSearchClick }) => {
 
                 <button
                     onClick={onSearchClick}
-                    className="flex items-center space-x-2 p-2 rounded-lg bg-[#010918] hover:bg-[#191e57] transition text-gray-400 cursor-pointer"
+                    className="flex items-center transition text-primary-text hover:text-accent cursor-pointer"
                 >
                     <FiSearch size={20} />
                 </button>
@@ -55,12 +55,11 @@ const Header = ({ title, onSearchClick }) => {
                         onClick={() => setIsLayoutOpen(true)}
                         title="Customizar Painel"
                     >
-                        <FiGrid size={20} className="text-gray-400 hover:text-[#2148b4] cursor-pointer" />
+                        <FiGrid size={20} className="text-primary-text hover:text-accent cursor-pointer" />
                     </button>
-                    <FiBarChart2 size={20} className="text-gray-400 hover:text-[#2148b4] cursor-pointer" />
+                    <FiBarChart2 size={20} className="text-primary-text hover:text-accent cursor-pointer" />
                 </div>
 
-                {/* CONTAINER PERFIL */}
                 <div className="relative flex items-center space-x-3 w-24">
                     <button
                         onClick={() => setIsProfileOpen(!isProfileOpen)}
@@ -82,17 +81,20 @@ const Header = ({ title, onSearchClick }) => {
                             >
                                 <div className="p-3 border-b border-slate-700">
                                     <p className="text-xs text-gray-400">Logado como</p>
-                                    <p className="text-sm font-semibold text-white">João Silva</p>
+                                    <p className="text-sm font-semibold text-primary-text">João Silva</p>
                                 </div>
 
-                                <ul className="py-2">
+                                <ul className="py-2 flex flex-col gap-1">
                                     <li>
                                         <MenuOption icon={FiUser} text="Meu Perfil" />
                                     </li>
-                                    <li onClick={() => setIsSettingsOpen(true)}>
+                                    
+                                   <li onClick={() => setIsSettingsOpen(true)}>
                                         <MenuOption icon={FiSettings} text="Configurações" />
                                     </li>
-                                    <div className="h-px bg-slate-700 my-2" />
+
+                                    <li className="h-px bg-main-border/50 my-2 mx-2" aria-hidden="true" />
+
                                     <li>
                                         <MenuOption icon={FiLogOut} text="Sair" color="text-red-400" />
                                     </li>
@@ -122,9 +124,9 @@ const Header = ({ title, onSearchClick }) => {
     );
 };
 
-const MenuOption = ({ icon: Icon, text, color = "text-gray-300"}) => (
+const MenuOption = ({ icon: Icon, text}) => (
     <li>
-        <button className={`w-full flex items center space-x-3 px-4 py-2 hover:bg-slate-700 transition ${color}`}>
+        <button className={`w-full cursor-pointer flex items center space-x-3 px-4 py-2 hover:bg-accent/10 transition text-secondary-text`}>
             <Icon size={16} />
             <span className="text-sm font-medium">{text}</span>
         </button>

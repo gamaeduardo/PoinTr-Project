@@ -12,7 +12,7 @@ const SecurityAuditWidget = ({ logs, className }) => {
                             {log.type === 'warning' ? <FiAlertTriangle size={14} /> : <FiInfo size={14} />}
                         </div>
                         <div className="flex-1">
-                            <p className="text-xs text-gray-200 font-medium leading-tight">{log.event}</p>
+                            <p className="text-xs text-primary-text font-medium leading-tight">{log.event}</p>
                             <p className="text-[9px] text-gray-500 mt-1">{log.time} • {log.user}</p>
                         </div>
                     </div>

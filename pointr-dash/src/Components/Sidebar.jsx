@@ -1,13 +1,7 @@
 import React from "react";
 import SidebarItem from "./SidebarItem";
 import PointrLogo from "../assets/png/pointr_logo.png";
-import GeralIcon from "../assets/png/geral.png";
-import AlertaIcon from "../assets/png/alertas.png";
-import AnaliseIcon from "../assets/png/analise.png";
-import AusenciasIcon from "../assets/png/ausencias.png";
-import GestaoIcon from "../assets/png/gestao.png";
-import RelatorioIcon from "../assets/png/relatorio.png";
-import TurnosIcon from "../assets/png/turnos.png";
+import { FiGrid, FiCalendar, FiUsers, FiAlertCircle, FiLayers, FiPieChart, FiFileText } from 'react-icons/fi';;
 import MaisIcon from "../assets/png/mais.png";
 import { useThemeStore } from "../store/useThemeStore";
 
@@ -23,7 +17,7 @@ const Sidebar = () => {
     return (
         <aside className={`transition-all duration-500 ${layoutClasses[sidebarLayout]}`}>
             <nav className="flex flex-col items-center h-full">
-                <div className="mt-5 bg-linear-to-tl p-1 from-[#0a0d71] to-[#2835ee] rounded-2xl">
+                <div className="mt-5 p-1 bg-accent rounded-2xl">
                     <img src={PointrLogo} alt="Logo da PoinTr" className="w-10 h-10 object-contain"/>
                 </div>
 
@@ -38,23 +32,23 @@ const Sidebar = () => {
                 <div className=" mt-4 mb-4 w-7/10 h-[0.1px] bg-slate-700/20"></div>
                 
                 <ul className="flex flex-col items-center space-y-1">
-                    <SidebarItem iconSrc={GeralIcon} text="Geral" to="/" />
-                    <SidebarItem iconSrc={GestaoIcon} text="Gestão" to="/events"/>
-                    <SidebarItem iconSrc={AusenciasIcon} text="Ausências" to="/employees" />
-                    <SidebarItem iconSrc={AlertaIcon} text="Alertas" to="/employees/1" />
-                    <SidebarItem iconSrc={TurnosIcon} text="Turnos" to="/shifts" />
-                    <SidebarItem iconSrc={AnaliseIcon} text="Análises" to="/testes" />
+                    <SidebarItem icon={FiGrid} text="Geral" to="/" />
+                    <SidebarItem icon={FiCalendar} text="Gestão" to="/events"/>
+                    <SidebarItem icon={FiUsers} text="Ausências" to="/employees" />
+                    <SidebarItem icon={FiAlertCircle} text="Alertas" to="/employees/1" />
+                    <SidebarItem icon={FiLayers} text="Turnos" to="/shifts" />
+                    <SidebarItem icon={FiPieChart} text="Análises" to="/testes" />
                 </ul>
                 
                 <div className=" mt-4 mb-4 w-7/10 h-[0.1px] bg-slate-700/20"></div>
 
                 <ul className="flex flex-col items-center space-y-2">
-                    <SidebarItem iconSrc={RelatorioIcon} text="Relatórios" to="/testes" />
+                    <SidebarItem icon={FiFileText} text="Relatórios" to="/testes" />
                 </ul>
 
                  <ul className="absolute bottom-4 space-y-2">
                     <button className="mt-auto text-sm text-gray-500 hover:text-white transition text-left">
-                        v0.0.1
+                        v0.0.45
                     </button>
                 </ul>
 
