@@ -81,7 +81,7 @@ const EventsPage = ({ onSearchClick }) => {
       
       <div className="mt-8 grid grid-cols-1 lg:grid-cols-4 gap-6"> 
 
-        <div className="lg:col-span-3  bg-gradient-to-t from-[#06062285] to-[#0606228a] p-6 rounded-lg shadow-xl h-[80vh]">
+        <div className="lg:col-span-3  bg-linear-to-t from-[#06062285] to-[#0606228a] p-6 rounded-lg shadow-xl h-[80vh]">
           
           <div className="flex justify-between items-center mb-4">
             <div className='flex items-center space-x-4'>
@@ -135,7 +135,7 @@ const EventsPage = ({ onSearchClick }) => {
           </div>
         </div>
 
-        <div className="lg:col-span-1 bg-gradient-to-t from-[#06062285] to-[#0606228a] p-6 rounded-lg shadow-xl">
+        <div className="lg:col-span-1 bg-linear-to-t from-[#06062285] to-[#0606228a] p-6 rounded-lg shadow-xl">
           <EventList />
         </div>
         

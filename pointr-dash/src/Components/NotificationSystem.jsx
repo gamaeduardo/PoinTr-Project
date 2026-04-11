@@ -76,9 +76,9 @@ const NotificationSystem = () => {
     return (
         <div
             className={`
-                fixed top-8 right-0 p-4 shadow-xl z-[100] max-w-sm
+                fixed top-8 right-0 p-4 shadow-xl z-100 max-w-sm
                 rounded-l-lg transform transition-transform duration-500 ease-out
-                bg-gradient-to-r from-[#010833] to-[#01293a] border-l-4
+                bg-linear-to-r from-[#010833] to-[#01293a] border-l-4
                 ${isLate ? 'border-red-500' : 'border-[#008cff]'}
                 ${isVisible ? 'translate-x-0' : 'translate-x-full'}
             `}
