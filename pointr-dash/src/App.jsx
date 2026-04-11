@@ -1,46 +1,42 @@
-import React, { useState } from "react";
-import Sidebar from "./Components/Sidebar";
-import Header from "./Components/Header";
-import GeralContent from "./pages/GeralContent";
-import EventsPage from "./pages/EventsPage";
-import SupportMenu from "./Components/SupportMenu";
-import NotificationSystem from "./Components/NotificationSystem";
-import GlobalSearchModal from "./Components/GlobalSearchModal";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import EmployeesPage from "./pages/EmployeesPage";
-import EmployeeDetailPages from "./pages/EmployeeDetailPage";
-import ShiftManagementPage from "./pages/ShiftManagementPage";
+import React, { useState, useEffect } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import { useCompanyStore } from './store/useCompanyStore';
+import CompanySelector from './pages/CompanySelector';
+import MainDashboard from './pages/MainDashboard';
+import LoadingScreen from './Components/LoadingScreen';
 
-export function App() {
-  const mainCompesationMargin = 'ml-24';
+const App = () => {
+  const { currentCompany } = useCompanyStore();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-
-  const openSearch = () => setIsSearchOpen(true);
-  const closeSearch = () => setIsSearchOpen(false);
+  // Efeito do Loading
+  useEffect(() => {
+    if (currentCompany) {
+      setIsLoading(true);
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 1500);
+      return () => clearTimeout(timer)
+    }
+  }, [currentCompany]);
 
   return (
-      <BrowserRouter>
-        <div className={`flex min-h-screen bg-gradient-to-b from-[#020313] to-[#00050f] overflow-x-hidden`}>
-            <Sidebar/>
+    <>
+      <AnimatePresence mode="wait">
+        {isLoading && (
+          <LoadingScreen key="loader" companyName={currentCompany?.name} />
+        )}
+      </AnimatePresence>
 
-            <NotificationSystem />
+      <AnimatePresence mode="wait">
+        {!currentCompany ? (
+          <CompanySelector key="selector" />
+        ) : (
+          !isLoading && <MainDashboard key="dashboard" />
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
 
-            <SupportMenu/>
-
-            <GlobalSearchModal isOpen={isSearchOpen} onClose={closeSearch} />
-
-            <div className={`${mainCompesationMargin} mr-5 flex-grow w-full text-white min-w-0`}>
-              <Routes>
-                <Route path="/" element={<GeralContent onSearchClick={openSearch} />} />
-                <Route path="/events" element={<EventsPage onSearchClick={openSearch} />} />
-                <Route path="/employees" element={<EmployeesPage onSearchClick={openSearch} />} />
-                <Route path="/employees/:id" element={<EmployeeDetailPages onSearchClick={openSearch} />} />
-                <Route path="/shifts" element={<ShiftManagementPage onSearchClick={openSearch} />} />
-              </Routes>
-            </div>
-        </div>
-      </BrowserRouter>
-)
-}
-
+export default App;
