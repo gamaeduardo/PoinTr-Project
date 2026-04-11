@@ -6,7 +6,7 @@ const EmployeeProfileCardVertical = ({ employee }) => {
     const roleModel = employee.totalAttendance > 200 ? 'Ótimo' : 'Consistente';
 
     return (
-        <div className="bg-gradient-to-t from-[#06062285] to-[#0606228a] p-6 rounded-lg shadow-xl h-full flex flex-col items-center text-center">
+        <div className="bg-linear-to-t from-[#06062285] to-[#0606228a] p-6 rounded-lg shadow-xl h-full flex flex-col items-center text-center">
 
             <div className="w-24 h-24 rounded-full overflow-hidden bg-indigo-500 flex items-center justify-center text-4xl font-bold text-white mb-4">
                 {employee.name.charAt(0)}

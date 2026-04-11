@@ -12,7 +12,7 @@ const historyData = [
 const AttendanceHistory = ({ employeeId }) => {
 
     return (
-        <div className="bg-gradient-to-t from-[#06062285] to-[#0606228a] p-6 rounded-lg shadow-xl">
+        <div className="bg-linear-to-t from-[#06062285] to-[#0606228a] p-6 rounded-lg shadow-xl">
             <h2 className="text-xl font-bold text-white mb-6 border-b border-slate-700 pb-3">Histórico de Ponto</h2>
 
             <div className="flex justify-end items-center space-x-4 mb-4">

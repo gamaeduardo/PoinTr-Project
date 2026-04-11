@@ -106,7 +106,7 @@ const EmployeeTable = () => {
     };
 
     return (
-        <div className="bg-gradient-to-t from-[#06062285] to-[#0606228a] rounded-lg shadow-xl relative">
+        <div className="bg-linear-to-t from-[#06062285] to-[#0606228a] rounded-lg shadow-xl relative">
             <div className="flex justify-between items-center p-6">
                 <h3 className="text-lg font-semibold text-white mb-4">Colaboradores</h3>
 
@@ -155,7 +155,7 @@ const EmployeeTable = () => {
                         </tr>
                     </thead>
 
-                    <tbody className="bg-gradient-to-t from-[#06062285] to-[#0606228a] divide-y divide-slate-700">
+                    <tbody className="bg-linear-to-t from-[#06062285] to-[#0606228a] divide-y divide-slate-700">
                         {employees.map((employee) => (
                             <tr key={employee.id} className="hover:bg-[#1a2141] transition duration-150">
 
