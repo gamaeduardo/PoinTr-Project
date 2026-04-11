@@ -2,112 +2,63 @@ import React from 'react';
 
 const CalendarStyles = () => (
     <style jsx="true">{` 
-        
-        .rbc-calendar {
-            font-family: inherit;
-            color: #E2E8F0;
-            border-radius: 0.5rem;
+        .rbc-calendar { font-family: inherit; color: var(--color-primary-text); }
+        .rbc-month-view, .rbc-time-view {
+            border: none !important;
+            background: transparent;
         }
 
-        
         .rbc-header {
-            background-color: #060c18; 
-            border: 0px; 
-            border-color: transparent !important;
-            color: #CBD5E1; 
-            padding: 8px 0;
-            font-weight: 600;
+            border-bottom: 1px solid var(--color-main-border) !important;
+            padding: 15px 0 !important;
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            font-weight: 900;
+            color: var(--color-secondary-text);
         }
 
-        
-        .rbc-day-bg {
-            background-color: #00082b; 
+        .rbc-day-bg { 
+            border-left: 1px solid var(--color-main-border) !important;
+            border-bottom: 1px solid var(--color-main-border) !important;
+            transition: background 0.2s;
         }
-        .rbc-off-range-bg {
-            background-color: #12172e; 
+        .rbc-day-bg:hover { background: rgba(255,255,255,0.02); }
+
+        .rbc-month-row { border-right: 1px solid var(--color-main-border) !important; }
+        .rbc-off-range-bg { background: rgba(0,0,0,0.1) !important; }
+
+        .rbc-today { 
+            background: var(--color-accent) !important;
+            background-opacity: 0.1 !important; /* Tailwind fallback trick */
+            position: relative;
+        }
+        .rbc-today .rbc-button-link { color: var(--color-accent) !important; font-weight: 800; }
+
+        .rbc-date-cell { padding: 10px; font-size: 12px; font-weight: 600; text-align: right; }
+        .rbc-button-link { color: var(--color-secondary-text); }
+
+        .custom-event-node {
+            border: none !important;
+            border-radius: 8px !important;
+            padding: 4px 8px !important;
+            font-size: 11px !important;
+            font-weight: 700 !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            margin-bottom: 2px !important;
         }
 
-        
-        .rbc-today {
-            background-color: #1E3A8A !important; 
+        .rbc-agenda-view {
+            background: var(--color-card-primary);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--color-main-border) !important;
         }
+        .rbc-agenda-table { color: var(--color-primary-text); }
+        .rbc-agenda-table thead tr th { border-bottom: 1px solid var(--color-main-border); padding: 15px; }
 
-        .rbc-btn-group {
-            border: 2px solid #0b111d;
-            border-radius: 10px;
-        }
-        
-        
-        .rbc-btn-group button {
-            background-color: #060c18;
-            color: #F1F5F9;
-            border: none;
-            padding: 10px;
-            border-radius: 10px;
-            transition: 0.2s;
-        }
-        .rbc-toolbar button:hover {
-            background-color: #0b111d;
-            color: #5f7594;
-        }
-
-        .rbc-month-view,
-        .rbc-day-bg,
-        .rbc-time-view,
-        .rbc-time-header {
-            border-color: #02031b !important;
-        }
-
-        .rbc-time-slot {
-            min-height: 40px;
-            border-color: #02031b !important;
-        }
-
-        .rbc-time-content, .rbc-day-slot {
-            min-height: 80%;
-        }
-
-        .rbc-time-slot-column {
-            border-color: #475569 !important;
-            background-color: #1E293B;
-            color: #CBD5E1;
-        }
-
-        .rbc-time-content {
-            overflow-y: auto; 
-            scrollbar-width: thin; /* Firefox */
-            scrollbar-color: #060c18 #1E293B; /* thumb e track (Firefox) */
-        }
-
-        .rbc-time-content::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-
-        .rbc-time-content::-webkit-scrollbar-track {
-            background: #1E293B;
-            border-radius: 10px;
-        }
-
-        .rbc-time-content::-webkit-scrollbar-thumb {
-            background-color: #060c18;
-            border-radius: 10px;
-            border: 2px solid #1E293B;
-        }
-
-        .rbc-btn-group > button.rbc-active {
-            background-color: #042b80 !important; 
-            
-            color: white !important;
-            
-            border-color: #042b80 !important;
-            
-            box-shadow: none !important;
-        }
-
-        .rbc-btn-group > button.rbc-active:hover {
-            background-color: #042b80 !important; 
-        }
+        .rbc-agenda-content { scrollbar-width: none; }
+        .rbc-agenda-content::-webkit-scrollbar { display: none; }
     `}</style>
 );
 

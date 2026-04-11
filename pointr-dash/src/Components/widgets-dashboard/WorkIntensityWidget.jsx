@@ -19,7 +19,7 @@ const WorkIntensityWidget = ({ className }) => {
         <Widget title="Intensidade de Trabalho" subtitle="Picos de atividade/dia" icon={FiActivity} className={className}>
             <div className="h-full flex flex-col justify-between">
                 <div className="flex items-center justify-between mb-4">
-                    <span className="text-2xl font-bold text-white">Alta</span>
+                    <span className="text-2xl font-bold text-primary-text">Alta</span>
                     <span className="text-[10px] text-indigo-400 bg-indigo-400/10 px-2 py-1 rounded">Tempo Real</span>
                 </div>
                 <div className="min-h-30">

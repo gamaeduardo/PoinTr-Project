@@ -58,7 +58,7 @@ const SettingsModal = ({ isOpen, onClose }) => {
                             </nav>
 
                             <button onClick={onClose} className="mt-auto text-sm text-gray-500 hover:text-white transition text-left">
-                                Versão v0.0.1
+                                Versão v0.0.45
                             </button>
                         </aside>
 

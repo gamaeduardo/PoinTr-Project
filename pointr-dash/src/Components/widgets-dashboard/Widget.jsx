@@ -21,7 +21,7 @@ const Widget = ({ title, subtitle, children, className = "", icon: Icon, isLoadi
                 <div className="flex justify-between items-start mb-6">
                     <div className="flex items-center space-x-4">
                         {Icon && (
-                            <div className="p-3 bg-indigo-500/10 rounded-2xl text-indigo-400 group-hover:scale-110 transition-transform">
+                            <div className="p-3 bg-accent/20 rounded-2xl text-accent group-hover:scale-110 transition-transform">
                                 <Icon size={22} />
                             </div>
                         )}

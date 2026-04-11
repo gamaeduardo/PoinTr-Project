@@ -1,105 +1,113 @@
-import React, { useState, useEffect } from 'react';
-import { FiChevronLeft, FiChevronRight, FiGrid, FiMoreVertical } from 'react-icons/fi';
-import io from 'socket.io-client';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiChevronLeft, FiChevronRight, FiGrid, FiMoreVertical, FiFilter, FiFileText, FiDownload, FiSettings, FiLifeBuoy, FiBell, FiMessageCircle, FiHelpCircle, FiClock } from 'react-icons/fi';
 import RecentEntry from './RecentEntry';
 import ToolItem from './ToolItem';
 
-const SERVER_URL = '#';
-const socket = io(SERVER_URL, { transports: ['websocket', 'polling'] });
-
 const SupportMenu = () => {
-
     const [isOpen, setIsOpen] = useState(false);
+    
+    // Dados injetados
+    const [recentEntries] = useState([
+        { key: 1, name: "Lucas Tania", role: "Entrada", time: "08:02" },
+        { key: 2, name: "Matteo Vistocco", role: "Intervalo", time: "12:15" },
+    ]);
 
-    const [recentEntry, setRecentEntries] = useState([]);
-
-    const menuWidthClass = 'w-96';
     const toggleMenu = () => setIsOpen(!isOpen);
-
-    useEffect(() => {
-        socket.on('dashboard_update', (data) => {
-            console.log('Ação recebida no Menu de Apoio:', data.type);
-
-            setRecentEntries(prevEntries => {
-                const newEntry = {
-                    name: data.employeeName,
-                    role: data.type.replace(/_/g, ' '),
-                    time: data.time,
-                    key: Date.now()
-                };
-
-                return [newEntry, ...prevEntries].slice(0, 5);
-            });
-        });
-
-        return () => {
-            socket.off('dashboard_update');
-        };
-    }, []);
 
     return (
         <>
-            {isOpen && (
-                <div className="fixed inset-0 bg-black opacity-30 z-40" onClick={toggleMenu}></div>
-            )}
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={toggleMenu}
+                        className="fixed inset-0 bg-black/40 backdrop-blur-sm z-140" 
+                    />
+                )}
+            </AnimatePresence>
 
-            <aside className={`fixed top-0 right-0 h-full bg-card-primary shadow-2xl z-50 ${menuWidthClass} transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-                <div className="flex flex-col h-full p-6 text-white">
-        
-                <div className="flex justify-between items-center mb-6 border-b border-slate-700 pb-3">
-                    <h2 className="text-xl font-bold">Menu de Apoio</h2>
-                    <FiMoreVertical size={24} className="text-gray-400 cursor-pointer hover:text-white" />
+            <aside className={`
+                fixed top-0 right-0 h-full bg-card-primary border-l border-main-border shadow-[-20px_0_50px_rgba(0,0,0,0.5)] z-150 
+                w-96 transform transition-transform duration-500 ease-[cubic-bezier(0.33,1,0.68,1)]
+                ${isOpen ? 'translate-x-0' : 'translate-x-full'}
+            `}>
+                <div className="flex flex-col h-full p-8 text-primary-text">
+                    
+                    <div className="flex justify-between items-center mb-10 border-b border-main-border pb-6">
+                        <div>
+                            <h2 className="text-2xl font-bold tracking-tighter">Apoio</h2>
+                            <p className="text-[10px] text-secondary-text uppercase font-bold tracking-widest mt-1">Ferramentas de Gestão</p>
+                        </div>
+                        <button className="p-2 hover:bg-white/5 rounded-xl transition-colors text-secondary-text">
+                            <FiMoreVertical size={20} />
+                        </button>
+                    </div>
+
+                    <div className="mb-10">
+                        <h3 className="text-[10px] font-black uppercase text-secondary-text tracking-[0.2em] mb-6">Ações Rápidas</h3>
+                        <div className="grid grid-cols-4 gap-4">
+                            <ToolItem icon={<FiFilter />} label="Filtros" />
+                            <ToolItem icon={<FiFileText />} label="Relatórios" />
+                            <ToolItem icon={<FiDownload />} label="Exportar" />
+                            <ToolItem icon={<FiSettings />} label="Ajustes" />
+                            <ToolItem icon={<FiLifeBuoy />} label="Chamados" />
+                            <ToolItem icon={<FiBell />} label="Avisos" />
+                            <ToolItem icon={<FiMessageCircle />} label="Chat" />
+                            <ToolItem icon={<FiHelpCircle />} label="Ajuda" />
+                        </div>
+                    </div>
+
+                    <div className="h-px bg-main-border/50 mb-10" />
+
+                    <div className="flex-1 flex flex-col min-h-0">
+                        <div className="flex justify-between items-center mb-6">
+                            <h3 className="text-[10px] font-black uppercase text-secondary-text tracking-[0.2em]">Fluxo Recente</h3>
+                            <FiClock size={14} className="text-secondary-text" />
+                        </div>
+
+                        <div className="space-y-2 overflow-y-auto pr-2 custom-scrollbar"> 
+                            {recentEntries.length > 0 ? (
+                                recentEntries.map((entry) => (
+                                    <RecentEntry
+                                        key={entry.key}
+                                        name={entry.name}
+                                        role={entry.role}
+                                        time={entry.time}
+                                    />
+                                ))
+                            ) : (
+                                <div className="py-10 text-center border-2 border-dashed border-main-border rounded-4xl">
+                                    <p className='text-[10px] text-secondary-text font-bold uppercase tracking-widest'>Aguardando Atividade...</p>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="mt-auto pt-6 border-t border-main-border flex justify-between items-center">
+                        <span className="text-[9px] font-bold text-secondary-text/50 uppercase italic">PoinTr v0.0.45</span>
+                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
+                    </div>
                 </div>
-
-                <h3 className="text-md font-semibold mb-3">Ferramentas</h3>
-                <div className="grid grid-cols-4 gap-3 mb-6 border-b border-slate-700 pb-6">
-                    <ToolItem icon={<FiGrid size={24} />} label="Filtros" />
-                    <ToolItem icon={<FiGrid size={24} />} label="Relatório" />
-                    <ToolItem icon={<FiGrid size={24} />} label="Exportar" />
-                    <ToolItem icon={<FiGrid size={24} />} label="Ajustes" />
-                    <ToolItem icon={<FiGrid size={24} />} label="Chamados" />
-                    <ToolItem icon={<FiGrid size={24} />} label="Avisos" />
-                    <ToolItem icon={<FiGrid size={24} />} label="Mensagens" />
-                    <ToolItem icon={<FiGrid size={24} />} label="Ajuda" />
-                </div>
-
-                <div className="flex justify-between items-center mb-3">
-                    <h3 className="text-md font-semibold">Pontos Recentes</h3>
-                    <FiMoreVertical size={24} className="text-gray-400 cursor-pointer hover:text-white" />
-                </div>
-
-                <div className="
-                    space-y-4 overflow-y-auto max-h-[40vh] pr-4
-
-                    scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-800
-
-                    [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-slate-800 [&::-webkit-scrollbar-thumb]:bg-slate-600
-                "> 
-                    {recentEntry.length > 0 ? (
-                        recentEntry.map((entry) => (
-                            <RecentEntry
-                                key={entry.key}
-                                name={entry.name}
-                                role={entry.role}
-                                time={entry.time}
-                            />
-                        ))
-                    ) : (
-                        <p className='text-gray-400 text-center mt-6'>Aguardando a primeira ação...</p>
-                    )}
-                </div>
-
-            </div>
             </aside>
 
             <button
                 onClick={toggleMenu} 
-                className={`fixed top-1/2 -translate-y-1/2 z-50 p-3 bg-[#0241b6] hover:bg-[#012c7c] text-white rounded-full cursor-pointer shadow-lg transition-all duration-300
-                ${isOpen ? `right-${menuWidthClass.slice(2)}` : 'right-0'}
-                ${isOpen ? 'rounded-l-full mr-1' : 'rounded-r-none'}
-                ${isOpen ? 'rounded-r-full' : 'rounded-l-full'}
-            `}>
-                {isOpen ? <FiChevronRight size={24} /> : <FiChevronLeft size={24} />}
+                className={`
+                    fixed top-1/2 -translate-y-1/2 z-160 w-12 h-20 
+                    bg-accent hover:bg-accent/90 text-white 
+                    flex items-center justify-center cursor-pointer shadow-[-10px_0_30px_rgba(99,102,241,0.3)]
+                    transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)]
+                    ${isOpen ? 'right-96 rounded-l-3xl rounded-r-none' : 'right-0 rounded-l-3xl'}
+                `}
+            >
+                {isOpen ? (
+                    <motion.div initial={{ rotate: 180 }} animate={{ rotate: 0 }}><FiChevronRight size={24} /></motion.div>
+                ) : (
+                    <motion.div initial={{ rotate: -180 }} animate={{ rotate: 0 }}><FiChevronLeft size={24} /></motion.div>
+                )}
             </button>
         </>
     )

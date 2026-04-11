@@ -17,7 +17,7 @@ const EfficiencyScoreWidget = ({ score, className }) => {
                     ))}
                 </div>
                 <p className="text-[10px] text-gray-500 text-center px-4">
-                    Sua equipe está <span className="text-white font-bold">15% mais rápida</span> que o padrão do setor.
+                    Sua equipe está <span className="text-primary-text font-bold">15% mais rápida</span> que o padrão do setor.
                 </p>
             </div>
         </Widget>

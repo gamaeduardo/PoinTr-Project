@@ -7,7 +7,7 @@ const LaborCostWidget = ({ cost, className}) => {
         <Widget title="Custo Operacional" subtitle="Folha acumulada / Mês" icon={FiDollarSign} className={className}>
             <div className="mt-2">
                 <p className="text-[10px] text-gray-500 mb-1 uppercase tracking-widest">Investimento Atual</p>
-                <h2 className="text-2xl font-bold text-white tracking-tight">
+                <h2 className="text-2xl font-bold text-primary-text tracking-tight">
                     { new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(cost)}
                 </h2>
 
