@@ -21,10 +21,10 @@ const ShiftGrid = ({ days }) => {
         <div className="mt-4 bg-slate-800 rounded-lg shadow-xl overflow-hidden border border-slate-700">
             <div className="grid grid-cols-[150px_repeat(7,1fr)]">
 
-                <div className="bg-gradient-to-t from-[#06062285] to-[#0606228a] p-3 border-r border-slate-700 text-sm font-semibold text-white">Funcionário</div>
+                <div className="bg-linear-to-t from-[#06062285] to-[#0606228a] p-3 border-r border-slate-700 text-sm font-semibold text-white">Funcionário</div>
 
                 {days.map((day, index) => (
-                    <div key={index} className="bg-gradient-to-t from-[#06062285] to-[#0606228a] p-3 text-center border-r border-slate-700 text-sm font-semibold text-white">
+                    <div key={index} className="bg-linear-to-t from-[#06062285] to-[#0606228a] p-3 text-center border-r border-slate-700 text-sm font-semibold text-white">
                         {dayHeaders[index]}
                         <p className="text-xs text-indigo-400 font-normal">{format(day, 'dd/MM')}</p>
                     </div>

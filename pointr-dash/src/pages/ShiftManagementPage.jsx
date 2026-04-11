@@ -33,7 +33,7 @@ const ShiftManagementPage = ({ onSearchClick }) => {
         <main className="w-full p-8">
             <Header title="Gestão de Turnos" onSearchClick={onSearchClick} />
 
-            <div className="mt-8 flex justify-between items-center bg-gradient-to-t from-[#06062285] to-[#0606228a] p-4 rounded-lg shadow-md">
+            <div className="mt-8 flex justify-between items-center bg-linear-to-t from-[#06062285] to-[#0606228a] p-4 rounded-lg shadow-md">
 
                 <h2 className="text-xl font-semibold text-white">
                     {format(weekStart, 'dd/MM/yyyy', { locale: ptBR })} - {format(daysOfWeek[6], 'dd/MM/yyyy', { locale: ptBR })}

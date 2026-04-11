@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 import { FiClock, FiAlertTriangle, FiX } from 'react-icons/fi';
 import notificationSound from '../assets/audio/notification.mp3';
 
-const SERVER_URL = 'https://pointr-socket-server.onrender.com'; 
+const SERVER_URL = '#'; 
 const socket = io(SERVER_URL, { transports: ['websocket', 'polling'] });
 const DISPLAY_TIME = 3000;
 
@@ -19,7 +19,7 @@ const NotificationSystem = () => {
 
             audio.volume = 0.5;
             audio.play().catch(e => {
-                console.warn("REprodução de áidop bloqueada pelo navegador.");
+                console.warn("REprodução de áudio bloqueada pelo navegador.");
             });
         } catch (error) {
             console.error("Error ao tentar tocar o som:", error);

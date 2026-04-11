@@ -1,0 +1,58 @@
+import React, { useState, useEffect } from "react";
+import Sidebar from "../Components/Sidebar";
+import Header from "../Components/Header";
+import GeralContent from "./GeralContent";
+import EventsPage from "./EventsPage";
+import SupportMenu from "../Components/SupportMenu";
+import NotificationSystem from "../Components/NotificationSystem";
+import GlobalSearchModal from "../Components/GlobalSearchModal";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import EmployeesPage from "./EmployeesPage";
+import EmployeeDetailPages from "./EmployeeDetailPage";
+import ShiftManagementPage from "./ShiftManagementPage";
+import { useThemeStore } from "../store/useThemeStore";
+
+
+const MainDashboard = () => {
+  const mainCompesationMargin = 'ml-24';
+
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  const openSearch = () => setIsSearchOpen(true);
+  const closeSearch = () => setIsSearchOpen(false);
+
+  // Estado do Tema
+  const theme = useThemeStore((state) => state.theme)
+
+  // Aplicação do Tema no HTML
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
+    return (
+      <BrowserRouter>
+        <div className={`flex min-h-screen bg-main-bg overflow-x-hidden`}>
+            <Sidebar/>
+
+            <NotificationSystem />
+
+            <SupportMenu/>
+
+            <GlobalSearchModal isOpen={isSearchOpen} onClose={closeSearch} />
+
+            <div className={`${mainCompesationMargin} mr-5 flex-1 w-full text-white min-w-0`}>
+              <Routes>
+                <Route path="/" element={<GeralContent onSearchClick={openSearch} />} />
+                <Route path="/events" element={<EventsPage onSearchClick={openSearch} />} />
+                <Route path="/employees" element={<EmployeesPage onSearchClick={openSearch} />} />
+                <Route path="/employees/:id" element={<EmployeeDetailPages onSearchClick={openSearch} />} />
+                <Route path="/shifts" element={<ShiftManagementPage onSearchClick={openSearch} />} />
+              </Routes>
+            </div>
+        </div>
+      </BrowserRouter>
+    )
+};
+
+export default MainDashboard;
+

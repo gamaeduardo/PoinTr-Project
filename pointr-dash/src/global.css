@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --color-main-bg: var(--bg-cor);
+  --color-main-border: var(--border-cor);
+  --color-primary-text: var(--text-primary-cor);
+  --color-secondary-text: var(--text-secondary-cor);
+  --color-card-primary: var(--card-primary-cor);
+  --color-sidebar-primary: var(--sidebar-primary-cor);
+
+
+  --color-accent: var(--accent-cor);
+  --color-accent-hover: var(--accent-hover);
+  --color-card-hover: var(--card-hover);  
+}
+
+@layer base {
+  /* -----------------------------------------------------------
+   1. TEMA: MODERN (Padrão - Deep Space / Indigo)
+   Focado em contraste alto e tons de azul marinho profundo.
+   ----------------------------------------------------------- */
+  :root, [data-theme='modern'] {
+    --bg-cor: #040516;
+    --border-cor: rgba(255, 255, 255, 0.08);
+    --text-primary-cor: #ffffff;
+    --text-secondary-cor: #94a3b8;
+    --card-primary-cor: #0b0e29;
+    --sidebar-primary-cor: #080a1f;
+    
+    --accent-cor: #6366f1;
+    --accent-hover: #4f46e5;
+    --card-hover: rgba(255, 255, 255, 0.02);
+  }
+
+  /* -----------------------------------------------------------
+    2. TEMA: LAMPAD (Light - White Ice / Neutral)
+    Limpo, sem cansar a vista, ideal para ambientes muito iluminados.
+    ----------------------------------------------------------- */
+  [data-theme='lampad'] {
+    --bg-cor: #f8fafc;
+    --border-cor: #e2e8f0;
+    --text-primary-cor: #0f172a;
+    --text-secondary-cor: #64748b;
+    --card-primary-cor: #ffffff;
+    --sidebar-primary-cor: #f1f5f9;
+
+    --accent-cor: #2563eb;
+    --accent-hover: #1d4ed8;
+    --card-hover: #f1f5f9;
+  }
+
+  /* -----------------------------------------------------------
+    3. TEMA: CODE (VS Code Dark+ Style)
+    Baseado no clássico Dark+, com cinzas azulados e azul vibrante.
+    ----------------------------------------------------------- */
+  [data-theme='code'] {
+    --bg-cor: #1e1e1e;
+    --border-cor: #333333;
+    --text-primary-cor: #d4d4d4;
+    --text-secondary-cor: #858585;
+    --card-primary-cor: #252526;
+    --sidebar-primary-cor: #333333;
+
+    --accent-cor: #007acc;
+    --accent-hover: #0062a3;
+    --card-hover: #2d2d2d;
+  }
+
+  /* -----------------------------------------------------------
+    4. TEMA: EMERALD (Extra: Forest / Professional Green)
+    Um tom de verde escuro que transmite seriedade e saúde financeira.
+    ----------------------------------------------------------- */
+  [data-theme='emerald'] {
+    --bg-cor: #061210;
+    --border-cor: rgba(16, 185, 129, 0.1);
+    --text-primary-cor: #ecfdf5;
+    --text-secondary-cor: #6ee7b7;
+    --card-primary-cor: #0a1f1c;
+    --sidebar-primary-cor: #0d2824;
+
+    --accent-cor: #10b981;
+    --accent-hover: #059669;
+    --card-hover: rgba(16, 185, 129, 0.05);
+  }
+
+  /* -----------------------------------------------------------
+    5. TEMA: GOTHIC (Extra: Dark / Full Dark)
+    Modo escuro focado no alto contraste.
+    ----------------------------------------------------------- */
+}

@@ -41,7 +41,7 @@ const DailyAttendanceTimeline = ({ employeeId }) => {
     const currentDayTimeline = timelineData[selectedDate] || [];
 
     return (
-        <div className="bg-gradient-to-t from-[#06062285] to-[#0606228a] p-6 rounded-lg shadow-xl h-full flex flex-col">
+        <div className="bg-linear-to-t from-[#06062285] to-[#0606228a] p-6 rounded-lg shadow-xl h-full flex flex-col">
 
             <div className="flex justify-between items-center mb-6 border-b border-slate-700 pb-3">
                 <button onClick={goToPrevDay} disabled={currentDayIndex === 0} className="p-2 rounded-full bg-[#1c3058] hover:bg-[#042b80] cursor-pointer text-gray-400 disabled:opacity-50 transition">
@@ -53,7 +53,7 @@ const DailyAttendanceTimeline = ({ employeeId }) => {
                 </button>
             </div>
 
-            <div className="flex-grow overflow-y-auto space-y-4">
+            <div className="grow overflow-y-auto space-y-4">
                 {currentDayTimeline.length === 0 ? (
                     <p className="text-gray-400 text-center py-8">Nenhum registro de ponto para este dia.</p>
                 ) : (
@@ -70,7 +70,7 @@ const DailyAttendanceTimeline = ({ employeeId }) => {
                                             <IconComponent size={14} className="text-white" />
                                     </div>
 
-                                    <div className="bg-[#18183d] p-4 rounded-lg shadow-md ml-6 flex-grow">
+                                    <div className="bg-[#18183d] p-4 rounded-lg shadow-md ml-6 grow">
                                         <div className="flex justify-between items-center mb-1">
                                             <p className="text-sm font-medium text-white">{entry.time} - {entry.title}</p>
                                             {entry.duration && <span className="text-xs text-gray-400">{entry.duration}</span>}

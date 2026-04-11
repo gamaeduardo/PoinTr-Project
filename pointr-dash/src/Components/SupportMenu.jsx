@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import RecentEntry from './RecentEntry';
 import ToolItem from './ToolItem';
 
-const SERVER_URL = 'https://pointr-socket-server.onrender.com';
+const SERVER_URL = '#';
 const socket = io(SERVER_URL, { transports: ['websocket', 'polling'] });
 
 const SupportMenu = () => {
@@ -43,7 +43,7 @@ const SupportMenu = () => {
                 <div className="fixed inset-0 bg-black opacity-30 z-40" onClick={toggleMenu}></div>
             )}
 
-            <aside className={`fixed top-0 right-0 h-full bg-[#0b132b] shadow-2xl z-50 ${menuWidthClass} transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+            <aside className={`fixed top-0 right-0 h-full bg-card-primary shadow-2xl z-50 ${menuWidthClass} transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 <div className="flex flex-col h-full p-6 text-white">
         
                 <div className="flex justify-between items-center mb-6 border-b border-slate-700 pb-3">
