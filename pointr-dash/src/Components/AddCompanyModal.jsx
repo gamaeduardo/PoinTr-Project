@@ -81,7 +81,7 @@ const AddCompanyModal = ({ isOpen, onClose }) => {
                                 <input 
                                     required
                                     className="w-full bg-main-bg border border-main-border rounded-2xl px-4 py-3 text-white focus:border-accent outline-none transition-all"
-                                    placeholder="Ex: PoinTr Tech HQ"
+                                    placeholder="Ex: Supcom Enterprise"
                                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                                 />
                             </div>
@@ -93,6 +93,7 @@ const AddCompanyModal = ({ isOpen, onClose }) => {
                                     type="number"
                                     className="w-full bg-main-bg border border-main-border rounded-2xl px-4 py-3 text-white outline-none"
                                     placeholder="0"
+                                    min={1}
                                     onChange={(e) => setFormData({...formData, workers: e.target.value})}
                                 />
                                 </div>
@@ -120,6 +121,7 @@ const AddCompanyModal = ({ isOpen, onClose }) => {
                             </form>
                         )}
 
+                        {/* CÓDIGUIM */}
                         {step === 'join' && (
                             <motion.div
                                 initial={{ opacity: 0, x: 20 }}

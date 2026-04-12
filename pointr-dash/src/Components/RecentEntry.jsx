@@ -12,7 +12,7 @@ const RecentEntry = ({ name, role, time }) => {
                 
                 {/* Nome e Função */}
                 <div className="flex flex-col">
-                    <span className="text-sm font-medium text-white">{name}</span>
+                    <span className="text-sm font-medium text-primary-text">{name}</span>
                     <span className="text-xs text-gray-400">{role}</span>
                 </div>
             </div>

@@ -36,7 +36,7 @@ const SupportMenu = () => {
             `}>
                 <div className="flex flex-col h-full p-8 text-primary-text">
                     
-                    <div className="flex justify-between items-center mb-10 border-b border-main-border pb-6">
+                    <div className="flex justify-between items-center 2xl:mb-10 mb-5 border-b border-main-border pb-6">
                         <div>
                             <h2 className="text-2xl font-bold tracking-tighter">Apoio</h2>
                             <p className="text-[10px] text-secondary-text uppercase font-bold tracking-widest mt-1">Ferramentas de Gestão</p>
@@ -46,7 +46,7 @@ const SupportMenu = () => {
                         </button>
                     </div>
 
-                    <div className="mb-10">
+                    <div className="2xl:mb-10 mb-5">
                         <h3 className="text-[10px] font-black uppercase text-secondary-text tracking-[0.2em] mb-6">Ações Rápidas</h3>
                         <div className="grid grid-cols-4 gap-4">
                             <ToolItem icon={<FiFilter />} label="Filtros" />
@@ -87,7 +87,7 @@ const SupportMenu = () => {
                     </div>
 
                     <div className="mt-auto pt-6 border-t border-main-border flex justify-between items-center">
-                        <span className="text-[9px] font-bold text-secondary-text/50 uppercase italic">PoinTr v0.0.45</span>
+                        <span className="text-[9px] font-bold text-secondary-text/50 uppercase italic">PoinTr v0.0.49</span>
                         <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
                     </div>
                 </div>

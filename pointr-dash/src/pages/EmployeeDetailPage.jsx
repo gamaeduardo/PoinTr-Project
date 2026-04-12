@@ -8,6 +8,7 @@ import AttendanceHistory from "../Components/AttendanceHistory";
 import EmployeeProfileCard from "../Components/EmployeeProfileCard";
 import EmployeeProfileCardVertical from "../Components/EmployeeProfileCardVertical";
 import DailyAttendanceTimeline from "../Components/DailyAttendanceTimeline";
+import PageFilters from "../Components/PageFilters";
 
 
 const employeesData = employeesRawdata.map(emp => ({
@@ -48,9 +49,21 @@ const EmployeeDetailPage = ({ onSearchClick }) => {
         return <div className="text-white mt-12">Funcionário não encontrado.</div>;
     }
 
+    const filters = [
+        { id: 'all', label: 'Visão Geral' },
+        { id: 'finance', label: 'Financeiro' },
+        { id: 'operation', label: 'Operacional' },
+        { id: 'hr', label: 'Recursos Humanos' },
+        { id: 'security', label: 'Segurança' },
+        { id: 'compliance', label: 'Compliance' },
+    ];
+
     return (
-        <main className="w-full p-8">
+        <main className="w-full p-8 border border-main-border rounded-2xl shadow-2xl my-4">
             <Header title="Colaboradores" onSearchClick={onSearchClick}/>
+
+            <PageFilters options={filters} />
+
             <div className="flex justify-between items-center mt-8 mb-6">
 
                 <div className="flex items-center space-x-3 text-white">

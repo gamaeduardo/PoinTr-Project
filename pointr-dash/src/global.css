@@ -17,7 +17,7 @@
 @layer base {
   /* -----------------------------------------------------------
    1. TEMA: MODERN (Padrão - Deep Space / Indigo)
-   Focado em contraste alto e tons de azul marinho profundo.
+   Focado em contraste alto e tons de azul/roxo marinho profundo.
    ----------------------------------------------------------- */
   :root, [data-theme='modern'] {
     --bg-cor: #040516;
@@ -87,4 +87,41 @@
     5. TEMA: GOTHIC (Extra: Dark / Full Dark)
     Modo escuro focado no alto contraste.
     ----------------------------------------------------------- */
+
+
+
+
+    
+
+  /* -----------------------------------------------------------
+   ESTILIZAÇÃO DA BRRA DE ROLAGEM
+    ----------------------------------------------------------- */
+
+  /* Estilização para Navegadores Webkit (Chrome, Safari, Edge) */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-main-border);
+    border-radius: 20px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent);
+    border: 0px solid transparent;
+  }
+
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-main-border) transparent;
+  }
+
 }

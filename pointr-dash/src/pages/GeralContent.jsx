@@ -1,6 +1,5 @@
 import React from "react";
 import StatCard from "../Components/StatCard";
-import Gerar from "../assets/png/gerar.png";
 import Header from "../Components/Header";
 import ChartWrapper from "../Components/ChartWrapper";
 import WorkProgressWidget from "../Components/widgets-dashboard/WorkProgressWidget";
@@ -42,8 +41,24 @@ import EmployeeStatusTableWidget from "../Components/widgets-dashboard/EmployeeS
 import ContractRenewalTableWidget from "../Components/widgets-dashboard/ContractRenewalTableWidget";
 import AnomaliesTableWidget from "../Components/widgets-dashboard/AnomaliesTableWidget";
 import PageFilters from "../Components/PageFilters";
+import WeeklyActivityChart from "../Components/widgets-dashboard/WeeklyActivityChart";
+import DepartmentDistributionChart from "../Components/widgets-dashboard/DepartmentDistributionChart";
+import AbsenceTrendChart from "../Components/widgets-dashboard/AbsenceTrendChart";
+import LaborCostRadialChart from "../Components/widgets-dashboard/LaborCostRadialChart";
+import PeakHoursHeatmapChart from "../Components/widgets-dashboard/PeakHoursHeatmapChart";
+import TurnoverMonthlyChart from "../Components/widgets-dashboard/TurnoverMonthlyChart";
+import EfficiencyBubbleChart from "../Components/widgets-dashboard/EfficiencyBubbleChart";
 
 const GeralContent = ({ onSearchClick }) => {
+
+    const filters = [
+        { id: 'all', label: 'Visão Geral' },
+        { id: 'finance', label: 'Financeiro' },
+        { id: 'operation', label: 'Operacional' },
+        { id: 'hr', label: 'Recursos Humanos' },
+        { id: 'security', label: 'Segurança' },
+        { id: 'compliance', label: 'Compliance' },
+    ];
 
     const dadosDashboard = {
         totalHoras: 1240,
@@ -75,10 +90,12 @@ const GeralContent = ({ onSearchClick }) => {
         <main className="w-full p-8 border border-main-border rounded-2xl shadow-2xl my-4">
             <Header title="Painel Geral" onSearchClick={onSearchClick}/>
 
-            <PageFilters />
+            <PageFilters options={filters} />
             
             <div className="p-8">
                 <div className="grid grid-cols-12 gap-6">
+
+                    {/* Fazer Dicionário ou Matriz de Widgets */}
                     
                     <TotalHoursWidget 
                         totalHoras={dadosDashboard.totalHoras} 
@@ -251,6 +268,34 @@ const GeralContent = ({ onSearchClick }) => {
                     />
 
                     <AnomaliesTableWidget
+                        className="col-span-12 md:col-span-4"
+                    />
+
+                    <WeeklyActivityChart
+                        className="col-span-12 md:col-span-4"
+                    />
+
+                    <DepartmentDistributionChart
+                        className="col-span-12 md:col-span-4"
+                    />
+
+                    <AbsenceTrendChart
+                        className="col-span-12 md:col-span-4"
+                    />
+
+                    <LaborCostRadialChart
+                        className="col-span-12 md:col-span-4"
+                    />
+
+                    <PeakHoursHeatmapChart
+                        className="col-span-12 md:col-span-4"
+                    />
+
+                    <TurnoverMonthlyChart
+                        className="col-span-12 md:col-span-4"
+                    />
+
+                    <EfficiencyBubbleChart
                         className="col-span-12 md:col-span-4"
                     />
 

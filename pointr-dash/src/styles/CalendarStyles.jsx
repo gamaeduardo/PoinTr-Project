@@ -59,7 +59,8 @@ const CalendarStyles = () => (
 
         .rbc-agenda-content { scrollbar-width: none; }
         .rbc-agenda-content::-webkit-scrollbar { display: none; }
-    `}</style>
+    `}
+    </style>
 );
 
 export { CalendarStyles };

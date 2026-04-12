@@ -1,3 +1,5 @@
+// OFF -> Desativado Temporariamente (WebSocket caiu)
+
 import React, { useState, useEffect, useCallback } from 'react';
 import io from 'socket.io-client';
 import { FiClock, FiAlertTriangle, FiX } from 'react-icons/fi';

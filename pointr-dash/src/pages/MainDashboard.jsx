@@ -40,6 +40,7 @@ const MainDashboard = () => {
 
             <GlobalSearchModal isOpen={isSearchOpen} onClose={closeSearch} />
 
+          {/* Arrumar as Rotas - Bug: Conflito CompanySelector e rotas do MainDashboard */}
             <div className={`${mainCompesationMargin} mr-5 flex-1 w-full text-white min-w-0`}>
               <Routes>
                 <Route path="/" element={<GeralContent onSearchClick={openSearch} />} />

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { FiX, FiCheck } from 'react-icons/fi';
+import { FiX, FiCheck, FiCalendar, FiClock, FiAlignLeft, FiTag } from 'react-icons/fi';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const AddEventModal = ({ isOpen, onClose }) => {
-    const [formData, setFormData] = useState ({
+    const [formData, setFormData] = useState({
         title: '',
         startDateTime: '',
         endDateTime: '',
         description: '',
+        color: '#6366f1'
     });
 
     if (!isOpen) return null;
@@ -16,87 +18,115 @@ const AddEventModal = ({ isOpen, onClose }) => {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Novo Evento Salvo(Cade o back Caio????):", formData);
-        onClose();
-    };
-
     return (
-        <>
-            <div className="fixed inset-0 bg-black/70 z-40" onClick={onClose} />
+        <AnimatePresence>
+            <div className="fixed inset-0 z-200 flex items-center justify-center p-4">
+            
+                <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onClick={onClose}
+                    className="absolute inset-0 bg-black/60 backdrop-blur-md" 
+                />
 
-            <div className="fixed inset-0 flex justify-center items-center z-50">
-                <div className="bg-[#0c0b29] p-8 rounded-lg shadow-2xl w-full max-w-lg transform transition-all">
 
-                    <div className="flex justify-between items-center border-b border-slate-700 pb-3 mb-4">
-                        <h2 className="text-xl font-bold text-white">Adicionar Novo Evento</h2>
-                        <FiX size={24} className="text-gray-400 cursor-pointer hover:text-white" onClick={onClose} />
+                <motion.div 
+                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                    className="relative bg-card-primary border border-main-border p-8 rounded-[2.5rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)] w-full max-w-xl overflow-hidden"
+                >
+                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-linear-to-r from-accent to-purple-500 opacity-50" />
+
+                    <div className="flex justify-between items-center mb-8">
+                        <div>
+                            <h2 className="text-2xl font-bold tracking-tighter text-primary-text">
+                                Agendar Evento
+                            </h2>
+                            <p className="text-[10px] text-secondary-text uppercase font-bold tracking-widest mt-1">Sincronização de Calendário</p>
+                        </div>
+                        <button 
+                            onClick={onClose}
+                            className="p-2 bg-main-bg border border-main-border rounded-xl text-secondary-text hover:text-white transition-all cursor-pointer"
+                        >
+                            <FiX size={20} />
+                        </button>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-4">
-
-                        <div>
-                            <label className="block text-sm font-medium text-gray-400 mb-1">Título</label>
+                    <form className="space-y-6">
+                        <div className="relative">
+                            <label className="flex items-center gap-2 text-[10px] font-black uppercase text-secondary-text tracking-widest mb-2 ml-1">
+                                <FiTag className="text-accent" /> Título do Evento
+                            </label>
                             <input
                                 type="text" 
                                 name="title"
                                 value={formData.title}
                                 onChange={handleChange}
                                 required
-                                placeholder="Reunião, Férias, Lançamento..."
-                                className="w-full p-2.5 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-indigo-500 focus:border-indigo-500"
+                                placeholder="Ex: Reunião de Alinhamento TI"
+                                className="w-full p-4 bg-main-bg text-primary-text rounded-2xl border border-main-border focus:border-accent outline-none transition-all placeholder:text-secondary-text/30 font-medium"
                             />
                         </div>
 
-                        <div className="flex space-x-4">
-                            <div className="flex-1">
-                                <label className="block text-sm font-medium text-gray-400 mb-1">Início</label>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <label className="flex items-center gap-2 text-[10px] font-black uppercase text-secondary-text tracking-widest mb-2 ml-1">
+                                    <FiCalendar className="text-accent" /> Início
+                                </label>
                                 <input
                                     type="datetime-local"
                                     name="startDateTime"
                                     value={formData.startDateTime}
                                     onChange={handleChange}
-                                    required
-                                    className="w-full p-2.5 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-indigo-500 focus:border-indigo-500"
+                                    className="w-full p-4 bg-main-bg text-primary-text rounded-2xl border border-main-border focus:border-accent outline-none transition-all font-mono text-xs"
                                 />
                             </div>
 
-                            <div className="flex-1">
-                                <label className="block text-sm font-medium text-gray-400 mb-1">Fim</label>
+                            <div>
+                                <label className="flex items-center gap-2 text-[10px] font-black uppercase text-secondary-text tracking-widest mb-2 ml-1">
+                                    <FiClock className="text-accent" /> Fim
+                                </label>
                                 <input
                                     type="datetime-local"
                                     name="endDateTime"
                                     value={formData.endDateTime}
                                     onChange={handleChange}
-                                    required
-                                    className="w-full p-2.5 bg-slate-700 text-white rounded-lg border border-slate-600 focus:ring-indigo-500 focus:border-indigo-500"
+                                    className="w-full p-4 bg-main-bg text-primary-text rounded-2xl border border-main-border focus:border-accent outline-none transition-all font-mono text-xs"
                                 />
                             </div>
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-400 mb-1">Descrição (Opcional)</label>
+                            <label className="flex items-center gap-2 text-[10px] font-black uppercase text-secondary-text tracking-widest mb-2 ml-1">
+                                <FiAlignLeft className="text-accent" /> Descrição
+                            </label>
                             <textarea 
                                 name="description"
                                 value={formData.description}
                                 onChange={handleChange}
                                 rows="3"
-                                className="w-full p-2.5 bg-slate-700 resize-none text-white rounded-lg  border border-slate-600 focus:ring-indigo-500 focus:border-indigo-500"
+                                placeholder="Detalhes adicionais para a equipe..."
+                                className="w-full p-4 bg-main-bg resize-none text-primary-text rounded-2xl border border-main-border focus:border-accent outline-none transition-all placeholder:text-secondary-text/30 font-medium"
                             />
                         </div>
 
-                        <div className="flex justify-end pt-4">
-                            <button type="submit" className="px-4 py-2 cursor-pointer bg-[#042b80] text-white font-semibold rounded-lg hover:bg-[#041c50] transition flex items-center space-x-2">
-                                <FiCheck size={18} />
-                                <span>Salvar Evento</span>
+                        <div className="flex items-center justify-between pt-4 border-t border-main-border">
+                            <span className="text-[9px] text-secondary-text font-bold uppercase italic">* Todos os horários seguem o fuso de Brasília</span>
+                            
+                            <button 
+                                type="submit" 
+                                className="px-8 py-4 bg-accent text-white font-bold uppercase text-[11px] rounded-2xl hover:bg-accent/80 transition-all shadow-lg shadow-accent/20 flex items-center gap-3 cursor-pointer group"
+                            >
+                                <FiCheck size={18} className="group-hover:scale-125 transition-transform" />
+                                Salvar Registro
                             </button>
                         </div>
-
                     </form>
-                </div>
+                </motion.div>
             </div>
-        </>
+        </AnimatePresence>
     )
 };
 
