@@ -1,7 +1,7 @@
 import React from "react";
 import SidebarItem from "./SidebarItem";
 import PointrLogo from "../assets/png/pointr_logo.png";
-import { FiGrid, FiCalendar, FiUsers, FiAlertCircle, FiLayers, FiPieChart, FiFileText } from 'react-icons/fi';;
+import { FiGrid, FiCalendar, FiUsers, FiAlertCircle, FiPlus, FiLayers, FiPieChart, FiFileText } from 'react-icons/fi';;
 import MaisIcon from "../assets/png/mais.png";
 import { useThemeStore } from "../store/useThemeStore";
 
@@ -23,9 +23,9 @@ const Sidebar = () => {
 
                 <div className=" mt-4 mb-4 w-7/10 h-[0.1px] bg-slate-700/20"></div>
 
-                <ul className="flex flex-col items-center">
-                    <div className="bg-linear-to-tl p-4 rounded-full border-2 border-slate-900 cursor-pointer">
-                        <img src={MaisIcon} alt="Atalho" className="w-3 h-3 object-contain invert-100"/>
+                <ul className="flex flex-col items-center text-secondary-text hover:text-primary-text">
+                    <div className="bg-linear-to-tl 2xl:p-2.5 p-2 rounded-full border-2 border-secondary-text transition-all duration-300 hover:border-primary-text cursor-pointer">
+                        <FiPlus className="2xl:text-2xl text-xl object-contain"/>
                     </div>
                 </ul>
 
@@ -47,8 +47,8 @@ const Sidebar = () => {
                 </ul>
 
                  <ul className="absolute bottom-4 space-y-2">
-                    <button className="mt-auto text-sm text-gray-500 hover:text-white transition text-left">
-                        v0.0.45
+                    <button className="mt-auto 2xl:text-sm text-[12px] text-gray-500 hover:text-accent transition text-left">
+                        v0.0.49
                     </button>
                 </ul>
 

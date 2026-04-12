@@ -8,14 +8,14 @@ const AppearanceSettings = () => {
 
     const { sidebarLayout, setSidebarLayout } = useThemeStore()
     const { theme, setTheme } = useThemeStore()
-    const [brandColor, setBrandColor] = useState('#2C68F6')
+    const [brandColor, setBrandColor] = useState('#6C68F6')
 
     return (
 
         <div className="p-8 space-y-8 h-full overflow-y-auto">
 
             <section>
-                <h3 className="text-sm font0semibold text-gray-400 uppercase tracking-wider mb-4">Cor da Identidade</h3>
+                <h3 className="text-sm font-semibold text-secondary-text uppercase tracking-wider mb-4">Cor da Identidade</h3>
                 <div className="flex items-center space-x-3">
                     {['#6C68F6', '#8B5CF6', '#EC4899', '#10B981', '#F59E0B'].map(color => (
                         <button
@@ -31,7 +31,7 @@ const AppearanceSettings = () => {
             </section>
 
             <section>
-                <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Tema do Sistema</h3>
+                <h3 className="text-sm font-semibold text-secondary-text uppercase tracking-wider mb-4">Tema do Sistema</h3>
                 <div className="grid grid-cols-3 gap-4">
                     <ThemeOption 
                         label="Modern"
@@ -64,20 +64,20 @@ const AppearanceSettings = () => {
             </section>
 
             <section>
-                <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Visual das Tabelas</h3>
+                <h3 className="text-sm font-semibold text-secondary-text uppercase tracking-wider mb-4">Visual das Tabelas</h3>
                 <div className="flex space-x-4">
-                    <div className="flex-1 p-4 rounded-xl border-2 border-indigo-600 bg-indigo-600/10 text-white text-center cursor-pointer">
+                    <div className="flex-1 p-4 rounded-xl border-2 border-accent bg-accent/10 text-primary-text text-center cursor-pointer">
                         Padrão
                     </div>
 
-                    <div className="flex-1 p-4 rounded-xl border-2 border-slate-700 bg-transparent text-gray-400 text-center cursor-pointer hover:border-slate-500 transition">
+                    <div className="flex-1 p-4 rounded-xl border-2 border-main-border bg-transparent text-secondary-text text-center cursor-pointer hover:border-slate-500 transition">
                         Compacto
                     </div>
                 </div>
             </section>
 
             <section>
-                <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">
+                <h3 className="text-sm font-semibold text-secondary-text uppercase tracking-wider mb-4">
                     Estilo da barra lateral
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
@@ -85,8 +85,8 @@ const AppearanceSettings = () => {
                         onClick={() => setSidebarLayout('standard')}
                         className={`flex items-center p-4 rounded-xl border-2 transition-all ${
                             sidebarLayout === 'standard'
-                                ? 'border-indigo-600 bg-indigo-600/10 text-white'
-                                : 'border-slate-800 text-gray-500 hover:border-slate-700'
+                                ? 'border-accent bg-accent/10 text-primary-text'
+                                : 'border-main-border text-secondary-text hover:border-slate-700'
                         }`}
                     >
                         <FiColumns className="mr-3" size={20} />
@@ -100,8 +100,8 @@ const AppearanceSettings = () => {
                         onClick={() => setSidebarLayout('fixed')}
                         className={`flex items-center p-4 rounded-xl border-2 transition-all ${
                             sidebarLayout === 'fixed'
-                                ? 'border-indigo-600 bg-indigo-600/10 text-white'
-                                : 'border-slate-800 text-gray-500 hover:border-slate-700'
+                                ? 'border-accent bg-accent/10 text-primary-text'
+                                : 'border-main-border text-secondary-text hover:border-slate-700'
                         }`}
                     >
                         <FiLayers className="mr-3" size={20} />
@@ -120,7 +120,7 @@ const ThemeOption = ({ label, active, onClick, icon}) => (
     <button 
         onClick={onClick}
         className={`flex flex-col items-center justify-center cursor-pointer p-4 rounded-xl border-2 transition ${
-            active ? 'border-indigo-600 bg-indigo-600/10 text-white' : 'border-slate-700 bg-slate-800/50 text-gray-400 hover:border-slate-500'
+            active ? 'border-accent bg-accent/30 text-primary-text' : 'border-accent/20 bg-accent/10 text-secondary-text hover:border-accent'
         }`}
     >
         <div className="w-full h-40 bg-indigo-400 mb-3 rounded-2xl"></div>

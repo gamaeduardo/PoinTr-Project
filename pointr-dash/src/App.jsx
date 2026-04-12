@@ -21,6 +21,8 @@ const App = () => {
   }, [currentCompany]);
 
   return (
+    // Verificar se está na Página de Seleção ou em um Projeto Específico
+    // Lembrar de Arrumar as Rotas do MainDashboard
     <>
       <AnimatePresence mode="wait">
         {isLoading && (

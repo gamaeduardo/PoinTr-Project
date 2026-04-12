@@ -11,8 +11,8 @@ const SidebarItem = ({ icon: Icon, text, to }) => {
             <Link 
                 to={to} 
                 className={`
-                    relative flex items-center justify-center h-12 w-12 
-                    rounded-2xl transition-all duration-300 cursor-pointer
+                    relative flex items-center justify-center h-10 w-10 2xl:h-12 2xl:w-12 
+                    2xl:rounded-2xl rounded-xl transition-all duration-300 cursor-pointer
                     ${active 
                         ? 'bg-accent shadow-[0_0_20px_rgba(99,102,241,0.4)] text-white' 
                         : 'bg-transparent text-secondary-text hover:bg-white/5 hover:text-primary-text'

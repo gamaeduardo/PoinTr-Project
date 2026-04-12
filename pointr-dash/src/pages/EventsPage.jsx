@@ -9,6 +9,7 @@ import { FiChevronLeft, FiChevronRight, FiPlus, FiGrid, FiList } from 'react-ico
 import { CalendarStyles } from '../styles/CalendarStyles';
 import EventList from '../Components/EventList';
 import AddEventModal from '../Components/AddEventModal';
+import PageFilters from '../Components/PageFilters';
 
 const locales = { 'pt-BR': ptBR };
 const localizer = dateFnsLocalizer({
@@ -29,17 +30,25 @@ const EventsPage = ({ onSearchClick }) => {
     { id: 'agenda', label: 'Agenda', icon: FiList },
   ];
 
+  const filters = [
+        { id: 'calendar', label: 'Calendário' },
+        { id: 'events', label: 'Eventos' },
+        { id: 'pending', label: 'Pendente' }
+    ];
+
   return (
     <main className="w-full p-8 border border-main-border rounded-2xl shadow-2xl my-4">
       <CalendarStyles />
       <Header title="Calendário Operacional" onSearchClick={onSearchClick}/> 
+
+      <PageFilters options={filters} />
       
-      <div className="mt-8 grid grid-cols-1 lg:grid-cols-4 gap-8"> 
+      <div className="mt-8 grid grid-cols-1 2xl:grid-cols-4 gap-8"> 
 
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="lg:col-span-3 bg-card-primary border border-main-border p-8 rounded-[2.5rem] shadow-2xl h-[82vh] flex flex-col"
+          className="2xl:col-span-3 bg-card-primary border border-main-border p-8 rounded-[2.5rem] shadow-2xl h-[82vh] flex flex-col"
         >
           <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
             <div className='flex items-center space-x-6'>
@@ -110,7 +119,7 @@ const EventsPage = ({ onSearchClick }) => {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2 }}
-          className="lg:col-span-1"
+          className="2xl:col-span-1"
         >
           <EventList />
         </motion.div>

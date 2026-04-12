@@ -5,7 +5,7 @@ import { FiActivity } from 'react-icons/fi';
 
 const WorkProgressWidget = ({ data, className }) => {
   // Toda a lógica de processamento de dados do gráfico fica AQUI
-  const chartOptions = { /* ... suas configs do ApexCharts ... */ };
+  const chartOptions = {};
   const series = [{ name: 'Progresso', data: data || [30, 40, 35, 50, 49, 60] }];
 
   return (

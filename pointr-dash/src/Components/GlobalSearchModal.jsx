@@ -111,7 +111,7 @@ const GlobalSearchModal = ({ isOpen, onClose }) => {
                         </div>
 
 
-                        <div className="p-4 max-h-112.5 overflow-y-auto custom-scrollbar bg-main-bg/30">
+                        <div className="p-4 2xl:max-h-112.5 max-h-80 overflow-y-auto custom-scrollbar bg-main-bg/30">
                             {filteredResults.length === 0 ? (
                                 <div className="py-12 text-center">
                                     <p className="text-secondary-text">Nenhum resultado para "<span className="text-primary-text font-bold">{query}</span>"</p>

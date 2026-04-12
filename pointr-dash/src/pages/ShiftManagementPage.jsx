@@ -7,6 +7,7 @@ import subDays from "date-fns/subDays";
 import format from "date-fns/format";
 import ptBR from 'date-fns/locale/pt-BR';
 import ShiftGrid from "../Components/ShiftGrid";
+import PageFilters from "../Components/PageFilters";
 
 const today = new Date();
 const initialWeekStart = startOfWeek(today, { weekStartsOn: 1 });
@@ -28,10 +29,19 @@ const ShiftManagementPage = ({ onSearchClick }) => {
         setWeekStart(subDays(weekStart, 7));
     };
 
+    const filters = [
+        { id: 'today', label: 'Hoje' },
+        { id: 'weekly', label: 'Semanal' },
+        { id: 'holiday', label: 'Feriados' },
+        { id: 'shifts', label: 'Turnos' },
+        { id: 'pending', label: 'Pendentes' },
+    ];
 
     return (
-        <main className="w-full p-8">
+        <main className="w-full p-8 border border-main-border rounded-2xl shadow-2xl my-4">
             <Header title="Gestão de Turnos" onSearchClick={onSearchClick} />
+
+            <PageFilters options={filters} />
 
             <div className="mt-8 flex justify-between items-center bg-linear-to-t from-[#06062285] to-[#0606228a] p-4 rounded-lg shadow-md">
 

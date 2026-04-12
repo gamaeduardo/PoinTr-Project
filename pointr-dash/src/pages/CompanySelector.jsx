@@ -10,7 +10,7 @@ const CompanySelector = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
-  // Filtro de busca
+  // Filtro de busca - não concluído ainda
   const filteredCompanies = companies.filter(c => 
     c.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -59,7 +59,7 @@ const CompanySelector = () => {
 
       {/* CONTEÚDO PRINCIPAL */}
       <main className="pt-2 pb-2 px-6">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto mt-30 2xl:mt-0 ">
 
           <div className="min-h-screen bg-main-bg flex flex-col items-center justify-center p-6">
             <motion.div
@@ -74,11 +74,11 @@ const CompanySelector = () => {
             <div className="mb-10 flex items-center bg-card-primary border border-main-border px-4 py-3 rounded-2xl w-xl focus-within:border-accent transition-all group">
                 <FiSearch className="text-secondary-text group-focus-within:text-accent transition-colors" />
                 <input 
-                type="text" 
-                placeholder="Buscar organização..." 
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="bg-transparent border-none outline-none ml-3 text-sm w-full placeholder:text-gray-600"
+                  type="text" 
+                  placeholder="Buscar organização..." 
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="bg-transparent border-none outline-none ml-3 text-sm w-full placeholder:text-gray-600"
                 />
             </div>
 

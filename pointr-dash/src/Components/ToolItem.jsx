@@ -6,7 +6,7 @@ const ToolItem = ({ icon, label }) => {
             <div className="p-1 rounded-md text-accent">
                 {icon}
             </div>
-            <span className="text-[11px] text-center text-gray-300 font-semibold">{label}</span>
+            <span className="text-[11px] text-center text-primary-text font-semibold">{label}</span>
         </div>
     )
 };

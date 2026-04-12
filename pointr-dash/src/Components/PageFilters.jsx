@@ -1,28 +1,19 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-const categories = [
-    { id: 'all', label: 'Visão Geral' },
-    { id: 'finance', label: 'Financeiro' },
-    { id: 'operation', label: 'Operacional' },
-    { id: 'hr', label: 'Recursos Humanos' },
-    { id: 'security', label: 'Segurança' },
-    { id: 'compliance', label: 'Compliance' },
-];
-
-const DashboardFilters = () => {
-    const [active, setActive] = useState('all');
+const PageFilters = ({ options }) => {
+    const [active, setActive] = useState(options[0]?.id);
 
     return (
         <div className="relative flex items-center gap-1 mb-10 overflow-x-auto pb-4 no-scrollbar">
 
-            {categories.map((cat) => {
-                const isActive = active === cat.id;
+            {options.map((option) => {
+                const isActive = active === option.id;
                 
                 return (
                     <button
-                        key={cat.id}
-                        onClick={() => setActive(cat.id)}
+                        key={option.id}
+                        onClick={() => setActive(option.id)}
                         className={`
                             relative px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.15em] transition-all duration-300 whitespace-nowrap cursor-pointer
                             ${isActive ? 'text-white' : 'text-secondary-text hover:text-primary-text'}
@@ -38,7 +29,7 @@ const DashboardFilters = () => {
                         )}
                         
                         <span className="relative z-10 flex items-center gap-2">
-                            {cat.label}
+                            {option.label}
                             {isActive && (
                                 <motion.span 
                                     initial={{ scale: 0 }}
@@ -54,4 +45,4 @@ const DashboardFilters = () => {
     );
 };
 
-export default DashboardFilters;
+export default PageFilters;

@@ -31,10 +31,10 @@ const upcomingEvents = [
 
 const EventList = () => {
     return (
-        <div className="flex flex-col h-full bg-card-primary border border-main-border rounded-[2.5rem] p-8 shadow-2xl overflow-hidden">
+        <div className="flex flex-col h-full custom-scrollbar max-h-11/12 bg-card-primary border border-main-border rounded-[2.5rem] p-8 shadow-2xl overflow-hidden">
             
             <div className="mb-8">
-                <h3 className="text-xl font-black text-primary-text italic uppercase tracking-tighter">Agenda</h3>
+                <h3 className="text-2xl font-bold text-primary-text tracking-tighter">Agenda</h3>
                 <p className="text-[10px] text-secondary-text uppercase tracking-[0.2em] font-bold mt-1">Próximos Compromissos</p>
             </div>
 
@@ -58,7 +58,7 @@ const EventList = () => {
                                 <span className="text-[9px] font-bold text-secondary-text uppercase">{monthName}</span>
                             </div>
 
-                            <div className="flex-1 min-w-0">
+                            <div className="flex-1">
                                 <div className="flex items-center gap-2 mb-1">
                                     <span 
                                         className="w-1.5 h-1.5 rounded-full" 

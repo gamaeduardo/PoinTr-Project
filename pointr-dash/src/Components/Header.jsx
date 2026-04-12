@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from 'framer-motion'
-import { FiSearch, FiGrid, FiBarChart2, FiChevronDown, FiUser, FiSettings, FiLogOut, FiHome } from 'react-icons/fi'; 
+import { FiSearch, FiGrid, FiBarChart2, FiChevronDown, FiBriefcase, FiSettings, FiLogOut, FiHome } from 'react-icons/fi'; 
 import SettingsModal from "./SettingsModal";
 import LayoutBuilderModal from "./LayoutBuilderModal";
 
@@ -29,7 +29,8 @@ const Header = ({ title, onSearchClick }) => {
             scale: 0.95,
             transition: { duration: 0.1, ease: "easeIn" }
         }
-    }
+    };
+
     return (
         <header className="flex justify-between items-center w-full pb-3">
             <div className="flex gap-3">
@@ -86,10 +87,10 @@ const Header = ({ title, onSearchClick }) => {
 
                                 <ul className="py-2 flex flex-col gap-1">
                                     <li>
-                                        <MenuOption icon={FiUser} text="Meu Perfil" />
+                                        <MenuOption icon={FiBriefcase} text="Organização" />
                                     </li>
                                     
-                                   <li onClick={() => setIsSettingsOpen(true)}>
+                                   <li onClick={() => (setIsSettingsOpen(true), setIsProfileOpen(false))}>
                                         <MenuOption icon={FiSettings} text="Configurações" />
                                     </li>
 

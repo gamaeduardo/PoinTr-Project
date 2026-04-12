@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLayoutStore } from '../store/useLayoutStore';
 import { FiX, FiCheck, FiLayers } from 'react-icons/fi';
 
+// ESTUDAR A BIBLIOTECA DE REACT-GRID PARA USÁ-LA (Não Esquecer)
+
 const LayoutBuilderModal = ({ isOpen, onClose }) => {
     const { layout, setLayout } = useLayoutStore();
     
@@ -13,7 +15,6 @@ const LayoutBuilderModal = ({ isOpen, onClose }) => {
         { id: 'stats-1', name: 'Métricas Rápidas', minW: 3, minH: 2},
     ];
 
-    // Variantes para animação de entrada
     const modalVariants = {
         hidden: { opacity: 0, scale: 0.9, y: 20 },
         visible: { 
@@ -42,7 +43,7 @@ const LayoutBuilderModal = ({ isOpen, onClose }) => {
     return (
         <AnimatePresence>
             {isOpen && (
-                <div className="fixed inset-0 z-110 flex items-center justify-center p-4 md:p-10">
+                <div className="fixed inset-0 z-110 custom-scrollbar flex items-center justify-center p-4 md:p-10">
                     <motion.div 
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -56,16 +57,16 @@ const LayoutBuilderModal = ({ isOpen, onClose }) => {
                         initial="hidden"
                         animate="visible"
                         exit="exit"
-                        className="relative bg-[#0b0e29] w-full max-w-7xl h-full rounded-[2.5rem] border border-white/10 flex flex-col overflow-hidden shadow-2xl"
+                        className="relative bg-main-bg w-full max-w-7xl h-full rounded-[2.5rem] border border-main-border/10 flex flex-col overflow-hidden shadow-2xl"
                     >
                         
-                        <div className="flex justify-between items-center p-6 border-b border-white/5 bg-[#080a1f]/50">
+                        <div className="flex justify-between items-center p-6 border-b border-main-border/5 bg-main-bg/50">
                             <div className="flex items-center space-x-4">
-                                <div className="p-3 bg-indigo-500/20 rounded-2xl text-indigo-400">
+                                <div className="p-3 bg-accent/20 rounded-2xl text-accent">
                                     <FiLayers size={24} />
                                 </div>
                                 <div>
-                                    <h2 className="text-white font-bold text-xl">Construtor de Dashboard</h2>
+                                    <h2 className="text-primary-text font-bold text-xl">Construtor de Dashboard</h2>
                                     <p className="text-gray-500 text-xs">Ajuste a grade de 15 colunas para seu fluxo de trabalho</p>
                                 </div>
                             </div>
@@ -73,13 +74,13 @@ const LayoutBuilderModal = ({ isOpen, onClose }) => {
                             <div className="flex items-center space-x-3">
                                 <button 
                                     onClick={onClose}
-                                    className="px-6 py-2.5 text-gray-400 hover:text-white transition font-medium text-sm"
+                                    className="px-6 cursor-pointer py-2.5 text-primary-text hover:text-accent transition font-medium text-sm"
                                 >
                                     Cancelar
                                 </button>
                                 <button 
                                     onClick={handleSave}
-                                    className="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 px-6 py-2.5 rounded-2xl text-white font-bold transition shadow-lg shadow-indigo-600/20 text-sm"
+                                    className="flex items-center cursor-pointer space-x-2 bg-accent hover:bg-accent-hover px-6 py-2.5 rounded-2xl text-white font-bold transition shadow-lg shadow-indigo-600/20 text-sm"
                                 >
                                     <FiCheck />
                                     <span>Salvar Layout</span>
@@ -89,8 +90,8 @@ const LayoutBuilderModal = ({ isOpen, onClose }) => {
 
                         <div className="flex flex-1 overflow-hidden">
                             
-                            <aside className="w-80 bg-[#080a1f] p-8 border-r border-white/5 overflow-y-auto">
-                                <h3 className="text-gray-400 text-[10px] uppercase tracking-[0.2em] font-bold mb-6">Widgets Disponíveis</h3>
+                            <aside className="w-80 bg-card-primary p-8 border-r border-main-border/5 overflow-y-auto">
+                                <h3 className="text-secondary-text text-[10px] uppercase tracking-[0.2em] font-bold mb-6">Widgets Disponíveis</h3>
                                 <div className="space-y-4">
                                     {availableWidgets.map((w, i) => (
                                         <motion.div 
@@ -101,12 +102,12 @@ const LayoutBuilderModal = ({ isOpen, onClose }) => {
                                             animate="visible"
                                             whileHover={{ scale: 1.02, x: 5 }}
                                             whileTap={{ scale: 0.98 }}
-                                            className="p-5 bg-slate-900/50 rounded-2xl cursor-grab border border-white/5 hover:border-indigo-500/50 transition-colors group"
+                                            className="p-5 bg-accent/50 rounded-2xl cursor-grab border border-main-border/5 hover:border-accent-hover/50 transition-colors group"
                                         >
-                                            <p className="text-white font-semibold text-sm mb-1 group-hover:text-indigo-300 transition-colors">{w.name}</p>
+                                            <p className="text-white font-semibold text-sm mb-1 group-hover:text-accent transition-colors">{w.name}</p>
                                             <div className="flex items-center justify-between">
-                                                <span className="text-[10px] text-gray-500 font-mono">ID: {w.id}</span>
-                                                <span className="px-2 py-0.5 bg-slate-800 rounded-md text-[9px] text-indigo-400 font-bold uppercase">{w.minW}x{w.minH}</span>
+                                                <span className="text-[10px] text-secondary-text font-mono">ID: {w.id}</span>
+                                                <span className="px-2 py-0.5 bg-slate-800 rounded-md text-[9px] text-accent-hover font-bold uppercase">{w.minW}x{w.minH}</span>
                                             </div>
                                         </motion.div>
                                     ))}
@@ -114,9 +115,9 @@ const LayoutBuilderModal = ({ isOpen, onClose }) => {
                             </aside>
 
                             {/* ÁREA DO GRID */}
-                            <main className="flex-1 p-10 relative overflow-auto bg-[#04051a]">
+                            <main className="flex-1 p-10 relative overflow-auto bg-card-hover">
                                 <div
-                                    className='grid gap-1 border border-white/5 bg-white/1 rounded-xl p-1'
+                                    className='grid gap-1 border border-accent/15 bg-accent/11 rounded-xl p-1'
                                     style={{ 
                                         display: 'grid', 
                                         gridTemplateColumns: 'repeat(15, 1fr)', 
@@ -125,29 +126,27 @@ const LayoutBuilderModal = ({ isOpen, onClose }) => {
                                 >
                                     
                                     {Array.from({ length: 150 }).map((_, i) => (
-                                        <div key={i} className="border border-white/3 rounded-sm pointer-events-none" />
+                                        <div key={i} className="border border-accent/13 rounded-sm pointer-events-none" />
                                     ))}
 
-                                    {/* RENDERIZAÇÃO DOS WIDGETS NO MAPA */}
                                     {tempLayout.map(item => (
                                         <motion.div
                                             key={item.id}
-                                            layout // 💡 Essencial: faz o widget deslizar para a nova posição
+                                            layout // faz o widget deslizar para a nova posição (Não funciona ainda)
                                             initial={{ opacity: 0 }}
                                             animate={{ opacity: 1 }}
                                             style={{
                                                 gridColumn: `span ${item.w}`,
                                                 gridRow: `span ${item.h}`,
                                             }}
-                                            className="rounded-xl flex flex-col items-center justify-center text-[10px] font-bold text-indigo-300 border-2 border-indigo-600/50 bg-indigo-600/10 shadow-inner group relative"
+                                            className="rounded-xl flex flex-col items-center justify-center text-[10px] font-bold text-accent border-2 border-accent/50 bg-accent/10 shadow-inner group relative"
                                         >
                                             <span className="uppercase tracking-widest">{item.id}</span>
                                             
-                                            {/* Ícone de "Drag" simulado */}
                                             <div className="absolute top-2 right-2 flex space-x-0.5 opacity-30 group-hover:opacity-100 transition-opacity">
-                                                <div className="w-1 h-1 bg-white rounded-full"></div>
-                                                <div className="w-1 h-1 bg-white rounded-full"></div>
-                                                <div className="w-1 h-1 bg-white rounded-full"></div>
+                                                <div className="w-1 h-1 bg-primary-text rounded-full"></div>
+                                                <div className="w-1 h-1 bg-primary-text rounded-full"></div>
+                                                <div className="w-1 h-1 bg-primary-text rounded-full"></div>
                                             </div>
                                         </motion.div>
                                     ))}
