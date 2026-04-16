@@ -1,0 +1,15 @@
+# Dependências e Logs
+node_modules
+venv/
+*.log
+npm-debug.log*
+
+# Builds e Configurações de Ambiente
+.DS_Store
+.env
+/pointr-dash/dist
+/mobile-remote/dist
+/mobile-remote/android
+/mobile-remote/ios
+
+#Teste
