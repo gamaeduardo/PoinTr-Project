@@ -56,8 +56,8 @@ const EventsPage = ({ onSearchClick }) => {
                 {monthName}
               </h2>
               <div className='flex bg-main-bg p-1 border border-main-border rounded-2xl'>
-                <button onClick={() => setCurrentDate(subMonths(currentDate, 1))} className='p-2 hover:text-accent transition-colors cursor-pointer'><FiChevronLeft size={20}/></button>
-                <button onClick={() => setCurrentDate(addMonths(currentDate, 1))} className='p-2 hover:text-accent transition-colors cursor-pointer'><FiChevronRight size={20}/></button>
+                <button onClick={() => setCurrentDate(subMonths(currentDate, 1))} className='p-2 hover:text-accent text-primary-text transition-colors cursor-pointer'><FiChevronLeft size={20}/></button>
+                <button onClick={() => setCurrentDate(addMonths(currentDate, 1))} className='p-2 hover:text-accent text-primary-text transition-colors cursor-pointer'><FiChevronRight size={20}/></button>
               </div>
             </div>
 
