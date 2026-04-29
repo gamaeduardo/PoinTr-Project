@@ -30,28 +30,26 @@ const MainDashboard = () => {
   }, [theme]);
 
     return (
-      <BrowserRouter>
-        <div className={`flex min-h-screen bg-main-bg overflow-x-hidden`}>
-            <Sidebar/>
+      <div className={`flex min-h-screen bg-main-bg overflow-x-hidden`}>
+          <Sidebar/>
 
-            <NotificationSystem />
+          <NotificationSystem />
 
-            <SupportMenu/>
+          <SupportMenu/>
 
-            <GlobalSearchModal isOpen={isSearchOpen} onClose={closeSearch} />
+          <GlobalSearchModal isOpen={isSearchOpen} onClose={closeSearch} />
 
-          {/* Arrumar as Rotas - Bug: Conflito CompanySelector e rotas do MainDashboard */}
-            <div className={`${mainCompesationMargin} mr-5 flex-1 w-full text-white min-w-0`}>
-              <Routes>
-                <Route path="/" element={<GeralContent onSearchClick={openSearch} />} />
-                <Route path="/events" element={<EventsPage onSearchClick={openSearch} />} />
-                <Route path="/employees" element={<EmployeesPage onSearchClick={openSearch} />} />
-                <Route path="/employees/:id" element={<EmployeeDetailPages onSearchClick={openSearch} />} />
-                <Route path="/shifts" element={<ShiftManagementPage onSearchClick={openSearch} />} />
-              </Routes>
-            </div>
-        </div>
-      </BrowserRouter>
+        {/* Arrumar as Rotas - Bug: Conflito CompanySelector e rotas do MainDashboard */}
+          <div className={`${mainCompesationMargin} mr-5 flex-1 w-full text-white min-w-0`}>
+            <Routes>
+              <Route path="/" element={<GeralContent onSearchClick={openSearch} />} />
+              <Route path="/events" element={<EventsPage onSearchClick={openSearch} />} />
+              <Route path="/employees" element={<EmployeesPage onSearchClick={openSearch} />} />
+              <Route path="/employees/:id" element={<EmployeeDetailPages onSearchClick={openSearch} />} />
+              <Route path="/shifts" element={<ShiftManagementPage onSearchClick={openSearch} />} />
+            </Routes>
+          </div>
+      </div>
     )
 };
 

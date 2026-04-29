@@ -10,7 +10,7 @@ const SentimentPulseWidget = ({ className }) => {
     ];
 
     return (
-        <Widget title="Pulso da Equipe" subtitle="Clima oorganizacional hoje" icon={FiSmile} className={className}>
+        <Widget title="Pulso da Equipe" subtitle="Clima organizacional hoje" icon={FiSmile} className={className}>
             <div className="h-full flex flex-col justify-center">
                 <div className="flex items-end justify-around mb-6 h-20">
                     {moods.map((m, i) => (

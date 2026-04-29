@@ -14,7 +14,7 @@ const EfficiencyBubbleChart = ({ className }) => {
     };
 
     return (
-        <Widget title="Eficiência" subtitle="Horas vs Pweformance" icon={FiZap} className={className} >
+        <Widget title="Eficiência" subtitle="Horas vs Performance" icon={FiZap} className={className} >
             <Chart options={options} series={[{ name: 'Equipes', data: [[10, 20, 30], [40, 50, 60], [20, 30, 10]] }]} type="bubble" height={150} />
         </Widget>
     );

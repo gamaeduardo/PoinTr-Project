@@ -32,18 +32,18 @@ const Sidebar = () => {
                 <div className=" mt-4 mb-4 w-7/10 h-[0.1px] bg-slate-700/20"></div>
                 
                 <ul className="flex flex-col items-center space-y-1">
-                    <SidebarItem icon={FiGrid} text="Geral" to="/" />
-                    <SidebarItem icon={FiCalendar} text="Gestão" to="/events"/>
-                    <SidebarItem icon={FiUsers} text="Ausências" to="/employees" />
-                    <SidebarItem icon={FiAlertCircle} text="Alertas" to="/employees/1" />
-                    <SidebarItem icon={FiLayers} text="Turnos" to="/shifts" />
-                    <SidebarItem icon={FiPieChart} text="Análises" to="/testes" />
+                    <SidebarItem icon={FiGrid} text="Geral" to="/dashboard/" />
+                    <SidebarItem icon={FiCalendar} text="Gestão" to="/dashboard/events"/>
+                    <SidebarItem icon={FiUsers} text="Ausências" to="/dashboard/employees" />
+                    <SidebarItem icon={FiAlertCircle} text="Alertas" to="/dashboard/employees/1" />
+                    <SidebarItem icon={FiLayers} text="Turnos" to="/dashboard/shifts" />
+                    <SidebarItem icon={FiPieChart} text="Análises" to="/dashboard/testes" />
                 </ul>
                 
                 <div className=" mt-4 mb-4 w-7/10 h-[0.1px] bg-slate-700/20"></div>
 
                 <ul className="flex flex-col items-center space-y-2">
-                    <SidebarItem icon={FiFileText} text="Relatórios" to="/testes" />
+                    <SidebarItem icon={FiFileText} text="Relatórios" to="/dashboard/testes" />
                 </ul>
 
                  <ul className="absolute bottom-4 space-y-2">
