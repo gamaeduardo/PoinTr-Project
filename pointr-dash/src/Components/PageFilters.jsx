@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 
-const PageFilters = ({ options }) => {
-    const [active, setActive] = useState(options[0]?.id);
+const PageFilters = ({ options, activeOption, onOptionSelect }) => {
+    
+    const currentActive = activeOption || options[0]?.id;
 
     return (
         <div className="relative flex items-center gap-1 mb-10 overflow-x-auto pb-4 no-scrollbar">
 
             {options.map((option) => {
-                const isActive = active === option.id;
+                const isActive = currentActive === option.id;
                 
                 return (
                     <button
                         key={option.id}
-                        onClick={() => setActive(option.id)}
+                        onClick={() => onOptionSelect && onOptionSelect(option.id)}
                         className={`
                             relative px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.15em] transition-all duration-300 whitespace-nowrap cursor-pointer
                             ${isActive ? 'text-white' : 'text-secondary-text hover:text-primary-text'}

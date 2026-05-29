@@ -11,8 +11,8 @@ const Widget = ({ title, subtitle, children, className = "", icon: Icon, isLoadi
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
             className={`
-                bg-card-primary border border-white/5 rounded-3xl p-6 
-                flex flex-col shadow-2xl relative group
+                bg-card-primary border border-white/5 rounded-3xl p-6 shadow-2xl
+                flex flex-col relative group
                 ${className}
             `}
         >

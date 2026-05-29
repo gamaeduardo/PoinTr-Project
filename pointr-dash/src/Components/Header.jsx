@@ -33,13 +33,11 @@ const Header = ({ title, onSearchClick }) => {
 
     return (
         <header className="flex justify-between items-center w-full pb-3">
-            <div className="flex gap-3">
-                <h1 className="text-xl font-normal items-center text-accent flex gap-2 cursor-pointer">
+            <div>
+                <h1 className="text-2xl mb-5 font-normal items-center text-accent flex gap-2 cursor-pointer">
                     <FiHome size={18} />
                     {title}
                 </h1>
-                <h1 className="text-xl font-medium text-primary-text">/</h1>
-                <h1 className="text-xl font-normal text-primary-text">Teste</h1>
             </div>
 
             <div className="flex items-center space-x-6">
