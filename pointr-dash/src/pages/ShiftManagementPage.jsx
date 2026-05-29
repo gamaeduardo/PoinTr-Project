@@ -18,12 +18,10 @@ const ShiftManagementPage = ({ onSearchClick }) => {
     ];
 
     return (
-        <main className="w-full p-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <main className="w-full p-8 border border-main-border rounded-2xl shadow-2xl my-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
             <Header title="Escala de Operação" onSearchClick={onSearchClick} />
 
-            <div className="mt-8">
-                <PageFilters options={filters} />
-            </div>
+            <PageFilters options={filters} />
 
             <div className="mt-10 flex justify-between items-center bg-card-primary border border-main-border p-6 rounded-4xl backdrop-blur-md">
                 <div className="flex items-center gap-6">

@@ -8,8 +8,10 @@ import NotificationSystem from "../Components/NotificationSystem";
 import GlobalSearchModal from "../Components/GlobalSearchModal";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import EmployeesPage from "./EmployeesPage";
-import EmployeeDetailPages from "./EmployeeDetailPage";
+import ManagementPage from "./ManagementPage";
 import ShiftManagementPage from "./ShiftManagementPage";
+import ReportsPage from "./ReportsPage";
+import AnalyticsPage from "./AnalyticsPage";
 import { useThemeStore } from "../store/useThemeStore";
 
 
@@ -45,8 +47,10 @@ const MainDashboard = () => {
               <Route path="/" element={<GeralContent onSearchClick={openSearch} />} />
               <Route path="/events" element={<EventsPage onSearchClick={openSearch} />} />
               <Route path="/employees" element={<EmployeesPage onSearchClick={openSearch} />} />
-              <Route path="/employees/:id" element={<EmployeeDetailPages onSearchClick={openSearch} />} />
+              <Route path="/employees/:id" element={<ManagementPage onSearchClick={openSearch} />} />
               <Route path="/shifts" element={<ShiftManagementPage onSearchClick={openSearch} />} />
+              <Route path="/analytics" element={<AnalyticsPage onSearchClick={openSearch} />} />
+              <Route path="/reports" element={<ReportsPage onSearchClick={openSearch} />} />
             </Routes>
           </div>
       </div>
