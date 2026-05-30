@@ -3,12 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { FiSearch, FiGrid, FiBarChart2, FiChevronDown, FiBriefcase, FiSettings, FiLogOut, FiHome } from 'react-icons/fi'; 
 import SettingsModal from "./SettingsModal";
 import LayoutBuilderModal from "./LayoutBuilderModal";
+import BusinessRulesModal from "./BusinessRulesModal";
 
 const Header = ({ title, onSearchClick }) => {
 
     const [isSettingsOpen, setIsSettingsOpen] = useState(false)
     const [isProfileOpen, setIsProfileOpen] = useState(false)
     const [isLayoutOpen, setIsLayoutOpen] = useState(false)
+    const [isBusinessRulesOpen, setIsBusinessRulesOpen] = useState(false)
 
     // ANIMAÇÃO
     const menuVariants = {
@@ -56,7 +58,7 @@ const Header = ({ title, onSearchClick }) => {
                     >
                         <FiGrid size={20} className="text-primary-text hover:text-accent cursor-pointer" />
                     </button>
-                    <FiBarChart2 size={20} className="text-primary-text hover:text-accent cursor-pointer" />
+                    {/* <FiBarChart2 size={20} className="text-primary-text hover:text-accent cursor-pointer" /> */}
                 </div>
 
                 <div className="relative flex items-center space-x-3 w-24">
@@ -84,7 +86,7 @@ const Header = ({ title, onSearchClick }) => {
                                 </div>
 
                                 <ul className="py-2 flex flex-col gap-1">
-                                    <li>
+                                    <li  onClick={() => (setIsBusinessRulesOpen(true), setIsProfileOpen(false))}>
                                         <MenuOption icon={FiBriefcase} text="Organização" />
                                     </li>
                                     
@@ -110,6 +112,12 @@ const Header = ({ title, onSearchClick }) => {
                 isOpen={isSettingsOpen}
                 onClose={() => setIsSettingsOpen(false)}
             />
+
+            <BusinessRulesModal 
+                isOpen={isBusinessRulesOpen}
+                onClose={() => setIsBusinessRulesOpen(false)}
+            />
+
 
             {isProfileOpen && (
                 <div className="fixed inset-0 z-40" onClick={() => setIsProfileOpen(false)}></div>
