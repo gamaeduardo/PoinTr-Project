@@ -135,7 +135,7 @@ const EventsPage = ({ onSearchClick }) => {
   };
 
   return (
-    <main className="w-full p-8 border border-main-border rounded-2xl shadow-2xl my-4">
+    <main className="w-full min-h-screen p-8 border border-main-border rounded-2xl shadow-2xl my-4">
       <CalendarStyles />
       <Header title="Calendário Operacional" onSearchClick={onSearchClick}/> 
 

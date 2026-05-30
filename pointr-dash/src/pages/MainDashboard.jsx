@@ -4,7 +4,6 @@ import Header from "../Components/Header";
 import GeralContent from "./GeralContent";
 import EventsPage from "./EventsPage";
 import SupportMenu from "../Components/SupportMenu";
-import NotificationSystem from "../Components/NotificationSystem";
 import GlobalSearchModal from "../Components/GlobalSearchModal";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import EmployeesPage from "./EmployeesPage";
@@ -35,7 +34,6 @@ const MainDashboard = () => {
       <div className={`flex min-h-screen bg-main-bg overflow-x-hidden`}>
           <Sidebar/>
 
-          <NotificationSystem />
 
           <SupportMenu/>
 
