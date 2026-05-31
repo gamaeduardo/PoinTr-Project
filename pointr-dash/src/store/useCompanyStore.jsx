@@ -1,19 +1,20 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
-export const useCompanyStore = create((set) => ({
-    currentCompany: null,
+const useCompanyStore = create((set) => ({
+  // GESTOR logado
+  gestor: null,
+  setGestor: (gestor) => set({ gestor }),
 
-    //Apenas para exemplo (Projetos), no fim todos os caminhos levam à PoinTr
-    companies: [
-        { id: 1, name: 'PoinTr Tech', workers: 45, plan: 'Enterprise', color: '#6366f1' },
-        { id: 2, name: 'Alpha Design', workers: 12, plan: 'Pro', color: '#ec4899' },
-        { id: 3, name: 'Supcom', workers: 128, plan: 'Enterprise', color: '#10b981' },
-    ],
+  // EMPRESA selecionada no CompanySelector
+  currentCompany: null,
+  setCompany: (company) => set({ currentCompany: company }),
 
-    setCompany: (company) => set({ currentCompany: company }),
-    logoutCompany: () => set({ currentCompany: null }),
+  // LISTA de empresas do gestor
+  companies: [],
+  setCompanies: (companies) => set({ companies }),
 
-    addCompany: (newCompany) => set((state) => ({
-        companies: [...state.companies, {...newCompany, id: Date.now() }]
-    }))
-}))
+  // LOGOUT — limpa tudo
+  clearAll: () => set({ gestor: null, currentCompany: null, companies: [] }),
+}));
+
+export default useCompanyStore;
