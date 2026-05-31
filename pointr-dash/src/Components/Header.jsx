@@ -36,7 +36,7 @@ const Header = ({ title, onSearchClick }) => {
             <div>
                 <h1 className="text-2xl mb-5 font-normal items-center text-accent flex gap-2 cursor-pointer">
                     <FiHome size={18} />
-                    {title}
+                    escrevendo qualquer coisa no lugar
                 </h1>
             </div>
 
