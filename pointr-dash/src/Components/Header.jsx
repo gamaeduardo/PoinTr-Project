@@ -4,6 +4,10 @@ import { FiSearch, FiGrid, FiBarChart2, FiChevronDown, FiBriefcase, FiSettings, 
 import SettingsModal from "./SettingsModal";
 import LayoutBuilderModal from "./LayoutBuilderModal";
 import BusinessRulesModal from "./BusinessRulesModal";
+import api from '../services/api';
+import useCompanyStore from '../store/useCompanyStore';
+import { useNavigate } from "react-router-dom";
+
 
 const Header = ({ title, onSearchClick }) => {
 
@@ -11,6 +15,18 @@ const Header = ({ title, onSearchClick }) => {
     const [isProfileOpen, setIsProfileOpen] = useState(false)
     const [isLayoutOpen, setIsLayoutOpen] = useState(false)
     const [isBusinessRulesOpen, setIsBusinessRulesOpen] = useState(false)
+    const { gestor, companies, setCompanies, setCompany } = useCompanyStore();
+
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        console.log("teste")
+        localStorage.clear();
+        window.location.href = "/";
+
+    };
+
 
     // ANIMAÇÃO
     const menuVariants = {
@@ -38,7 +54,7 @@ const Header = ({ title, onSearchClick }) => {
             <div>
                 <h1 className="text-2xl mb-5 font-normal items-center text-accent flex gap-2 cursor-pointer">
                     <FiHome size={18} />
-                    escrevendo qualquer coisa no lugar
+                    {title}
                 </h1>
             </div>
 
@@ -82,7 +98,7 @@ const Header = ({ title, onSearchClick }) => {
                             >
                                 <div className="p-3 border-b border-slate-700">
                                     <p className="text-xs text-gray-400">Logado como</p>
-                                    <p className="text-sm font-semibold text-primary-text">João Silva</p>
+                                    <p className="text-sm font-semibold text-primary-text">{gestor?.nome_completo || "Gestor"}</p>
                                 </div>
 
                                 <ul className="py-2 flex flex-col gap-1">
@@ -96,8 +112,8 @@ const Header = ({ title, onSearchClick }) => {
 
                                     <li className="h-px bg-main-border/50 my-2 mx-2" aria-hidden="true" />
 
-                                    <li>
-                                        <MenuOption icon={FiLogOut} text="Sair" color="text-red-400" />
+                                    <li  onClick={handleLogout}>
+                                        <MenuOption icon={FiLogOut} text="Sair" color="text-red-400"/>
                                     </li>
                                 </ul>
 
