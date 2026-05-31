@@ -7,6 +7,8 @@ import AuthPage from './pages/AuthPage';
 import CompanySelector from './pages/CompanySelector';
 import MainDashboard from './pages/MainDashboard';
 import LoadingScreen from './Components/LoadingScreen';
+import NotFoundPage from './pages/NotFoundPage';
+import { ToastProvider } from './Components/ToastContext';
 
 const App = () => {
   const { currentCompany } = useCompanyStore();
@@ -25,49 +27,53 @@ const App = () => {
   }, [currentCompany?.id]);
 
   return (
-    <BrowserRouter>
-      <AnimatePresence mode="wait">
-        {/* Loading escondendo as mudanças enquanto elas carregam */}
-        {isLoading && (
-          <LoadingScreen key="loader" companyName={currentCompany?.name} />
-        )}
-      </AnimatePresence>
+    <ToastProvider>
+      <BrowserRouter>
+        <AnimatePresence mode="wait">
+          {/* Loading escondendo as mudanças enquanto elas carregam */}
+          {isLoading && (
+            <LoadingScreen key="loader" companyName={currentCompany?.name} />
+          )}
+        </AnimatePresence>
 
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
 
-        <Route 
-          path="/login" 
-          element={!isAuthenticated ? <AuthPage onLogin={() => setIsAuthenticated(true)} /> : <Navigate to="/select-company" replace />} 
-        />
+            <Route 
+              path="/login" 
+              element={!isAuthenticated ? <AuthPage onLogin={() => setIsAuthenticated(true)} /> : <Navigate to="/select-company" replace />} 
+            />
 
-        <Route 
-          path="/select-company" 
-          element={
-            isAuthenticated ? (
-              !currentCompany ? <CompanySelector /> : <Navigate to="/dashboard" replace />
-            ) : (
-              <Navigate to="/login" replace />
-            )
-          } 
-        />
+            <Route 
+              path="/select-company" 
+              element={
+                isAuthenticated ? (
+                  !currentCompany ? <CompanySelector /> : <Navigate to="/dashboard" replace />
+                ) : (
+                  <Navigate to="/login" replace />
+                )
+              } 
+            />
 
-        <Route 
-          path="/dashboard/*" 
-          element={
-            isAuthenticated ? (
-              currentCompany ? (
-                <MainDashboard />
-              ) : (
-                <Navigate to="/select-company" replace />
-              )
-            ) : (
-              <Navigate to="/login" replace />
-            )
-          } 
-        />
-      </Routes>
-    </BrowserRouter>
+            <Route 
+              path="/dashboard/*" 
+              element={
+                isAuthenticated ? (
+                  currentCompany ? (
+                    <MainDashboard />
+                  ) : (
+                    <Navigate to="/select-company" replace />
+                  )
+                ) : (
+                  <Navigate to="/login" replace />
+                )
+              } 
+            />
+
+          <Route path="*" element={<NotFoundPage aoVoltarHome={() => window.location.href = '/dashboard'} />} />
+        </Routes>
+      </BrowserRouter>
+    </ToastProvider>
   );
 };
 

@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { FiMoreVertical, FiMaximize2, FiRefreshCw } from 'react-icons/fi';
 import { motion } from 'framer-motion';
+import ExpandedPerformanceModal from "./ExpandedModals/ExpandedPerformanceModal";
 
 const Widget = ({ title, subtitle, children, className = "", icon: Icon, isLoading = false, onRefresh }) => {
+
+    const [isExpandedOpen, setIsExpandedOpen] = useState(false)
 
     return (
         <motion.div
@@ -44,7 +47,9 @@ const Widget = ({ title, subtitle, children, className = "", icon: Icon, isLoadi
                                 <FiRefreshCw size={14} />
                             </button>
                         )}
-                        <button className="p-1.5 hover:text-white transition cursor-pointer">
+                        <button
+                            onClick={() => setIsExpandedOpen(!isExpandedOpen)}
+                            className="p-1.5 hover:text-white transition cursor-pointer">
                             <FiMaximize2 size={14} />
                         </button>
                         <button className="p-1.5 hover:text-white transition cursor-pointer">
@@ -65,7 +70,13 @@ const Widget = ({ title, subtitle, children, className = "", icon: Icon, isLoadi
                     <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
                 </div>
             )}
+
+        <ExpandedPerformanceModal 
+                isOpen={isExpandedOpen}
+                onClose={() => setIsExpandedOpen(false)}
+        />
         </motion.div>
+        
     );
 };
 
